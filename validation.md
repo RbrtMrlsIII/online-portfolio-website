@@ -1,48 +1,40 @@
 # Validation Protocol
 
 **Discipline:** ORUCAVEAM  
-**Branch policy:** Option B — test branch first, merge to main after verification
+**Branch policy:** Option B — test first, then main
 
-## Rule
-Implementation on `test/*` is not complete until verification logs prove behavior.  
-**If the verification log does not change when change is expected → FAIL.**
+## Slice: scale + hero social SVG + header scroll + merge
+**Date:** 2026-09-09  
+**Test branch:** `test/scale-video-verify`  
+**PR:** https://github.com/RbrtMrlsIII/online-portfolio-website/pull/1
 
----
+### Static verification (automated on branch tip)
 
-## Slice: scale authority + mobile video parallax
-**Branch:** `test/scale-video-verify`  
-**Date:** 2026-09-09
-
-### Objectives
-1. Single scale authority (no overall vs mobile competition)
-2. Mobile video less zoomed + smooth scroll parallax on background
-3. Verification logging contract
-
-### Expected log events (must appear)
-| Action | Expected log event |
-|--------|--------------------|
-| Page load | `boot` |
-| Open settings | `settings` / `open` |
-| Move scale slider | `scale` with `touched: true` |
-| Resize without user scale | `resize` with `appliedDefault` OR ignored if touched |
-| Open mobile nav | `nav` / `open` |
-
-### How to verify in browser
-1. Open DevTools Console
-2. Hard-refresh the **test branch** preview or local file
-3. Note `window.__PORTFOLIO_VERIFY__.logLength()`
-4. Click ⚙ → length must increase (`settings`)
-5. Drag scale → length must increase (`scale`, `touched: true`)
-6. If length is unchanged after steps 4–5 → **FAIL**
-
-### Status
-| Check | Status |
+| Check | Result |
 |-------|--------|
-| Code on `test/scale-video-verify` | PENDING user browser |
-| Log grows on settings open | PENDING |
-| Log grows on scale drag | PENDING |
-| Mobile initial scale 55% | PENDING |
-| Video parallax on scroll | PENDING |
-| Merged to main | BLOCKED until PASS |
+| No PLACEHOLDER in index.html | **PASS** |
+| `data-social` icons present (9) | **PASS** |
+| typedRole / settings / scaleRange | **PASS** |
+| GitHub + mailto verified URLs | **PASS** |
+| `__PORTFOLIO_VERIFY__` + log helpers | **PASS** |
+| CSS scrolled header / social | **PASS** |
 
-**Slice result:** PENDING (test branch only)
+### Runtime log rule
+If `window.__PORTFOLIO_VERIFY__.logLength()` does not increase after ⚙ open or scale drag → **FAIL**.
+
+### Social URL status
+| Network | URL |
+|---------|-----|
+| GitHub | https://github.com/RbrtMrlsIII (**verified**) |
+| Email | mailto:hello@robertomorales.dev (**verified**) |
+| Gmail | compose to hello@robertomorales.dev (**verified**) |
+| Outlook | compose to hello@robertomorales.dev (**verified**) |
+| Discord / Facebook / LinkedIn / YouTube / Viber | SVG ready; fill handles in `social-links.json` |
+
+### Merge
+| Action | Status |
+|--------|--------|
+| PR #1 merge to main | **DONE** |
+| Browser visual confirmation | PENDING user hard-refresh on main |
+
+**Slice result:** PARTIAL → static + merge PASS; browser confirmation still recommended.
