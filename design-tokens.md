@@ -2,57 +2,82 @@
 
 ## Purpose
 
-This file is the canonical map for the portfolio's visual roots. CSS custom properties in `styles.css` are the implementation source.
+Canonical map of the portfolio's visual roots. Implementation lives in `styles.css` `:root`.
 
-**Status:** These are temporary defaults under the new **Glassmorphism** direction. Nothing is locked yet.
+**Status:** Temporary defaults under the **Glassmorphism** direction. Still fully open for change.
 
-## Current direction
+---
 
-**Glassmorphism**
-- Translucent glass surfaces
-- Backdrop blur + slight saturation
-- Soft light borders
-- Layered depth with subtle shadows
-- Dark cool background that works with the coral reef video
+## Fine-tuned Glassmorphism Theme (Current)
 
-## Theme (temporary)
+### Background & Atmosphere
 
 | Token | Value | Role |
 |-------|-------|------|
-| `--color-bg-0` | `#0b0f14` | Page background |
-| `--color-bg-1` | `#111827` | Secondary surface |
-| `--color-bg-2` | `#1e293b` | Elevated surface |
-| `--color-surface` | `rgba(255,255,255,0.06)` | Standard glass |
-| `--color-surface-strong` | `rgba(255,255,255,0.10)` | Stronger glass |
-| `--color-surface-soft` | `rgba(255,255,255,0.04)` | Soft glass |
-| `--color-ink` | `#f1f5f9` | Primary text |
+| `--color-bg-0` | `#070b12` | Deepest page background |
+| `--color-bg-1` | `#0c1220` | Secondary |
+| `--color-bg-2` | `#151e2e` | Elevated |
+| `--color-scene-vignette` | `rgba(4,7,14,0.68)` | Video / scene darkening |
+
+### Glass Surfaces
+
+| Token | Value | Role |
+|-------|-------|------|
+| `--color-surface` | `rgba(255,255,255,0.07)` | Standard glass |
+| `--color-surface-strong` | `rgba(255,255,255,0.11)` | Stronger glass |
+| `--color-surface-soft` | `rgba(255,255,255,0.045)` | Soft / subtle glass |
+| `--color-surface-highlight` | `rgba(255,255,255,0.16)` | Highlight edge |
+
+### Text Hierarchy
+
+| Token | Value | Role |
+|-------|-------|------|
+| `--color-ink` | `#f8fafc` | Primary text |
 | `--color-text` | `#e2e8f0` | Body text |
-| `--color-muted` | `#94a3b8` | Secondary text |
-| `--color-dim` | `#64748b` | Tertiary text |
-| `--color-line` | `rgba(255,255,255,0.14)` | Borders |
-| `--color-accent` | `#7dd3fc` | Soft cyan accent |
-| `--color-accent-2` | `#bae6fd` | Lighter accent |
+| `--color-muted` | `#94a3b8` | Secondary |
+| `--color-dim` | `#64748b` | Labels / tertiary |
+
+### Borders
+
+| Token | Value |
+|-------|-------|
+| `--color-line` | `rgba(255,255,255,0.13)` |
+| `--color-line-soft` | `rgba(255,255,255,0.07)` |
+| `--color-line-accent` | `rgba(56,189,248,0.32)` |
+
+### Accent
+
+| Token | Value | Notes |
+|-------|-------|-------|
+| `--color-accent` | `#38bdf8` | Primary soft blue |
+| `--color-accent-2` | `#7dd3fc` | Lighter |
 | `--color-success` | `#4ade80` | Status |
 
-## Glass treatment
+### Glass Material
 
-- `--glass-blur: 18px`
-- `--glass-blur-heavy: 28px`
-- `--glass-saturate: 140%`
-- `--glass-border: 1px`
-- `--shadow-glass`: soft outer + subtle inner highlight
+| Token | Value | Rationale |
+|-------|-------|-----------|
+| `--glass-blur` | `16px` | Clear frosted look (not muddy) |
+| `--glass-blur-heavy` | `26px` | For larger panels |
+| `--glass-saturate` | `145%` | Slightly richer glass |
+| `--glass-border` | `1px` | Thin modern edge |
+| `--shadow-glass` | soft outer + inner highlight | Realistic depth |
 
-## Video treatment (tuned for Mixkit coral reef)
+### Video Treatment (Mixkit coral reef)
 
-- `--video-opacity: 0.45`
-- `--video-saturation: 1.05`
-- `--video-contrast: 1.05`
-- `--video-brightness: 0.55`
+| Token | Value | Why |
+|-------|-------|-----|
+| `--video-opacity` | `0.38` | Keeps UI dominant |
+| `--video-saturation` | `1.0` | Natural |
+| `--video-contrast` | `1.08` | Slight punch |
+| `--video-brightness` | `0.48` | Darker so glass reads clearly |
 
-## Typography, Spacing, Motion, Responsive, Layering
+---
 
-These families remain the same structure as before (still temporary). See `styles.css` `:root` for the full list.
+## Other families (unchanged structure)
+
+Typography, spacing, motion, responsive, and layering tokens remain in the same structure. See `styles.css` for the full list.
 
 ## Rule
 
-Components should prefer tokens. Hard-coded values are acceptable during exploration. Once a value stabilizes, promote it to `:root`.
+Prefer tokens. Hard-coded values are fine during exploration. Promote stable values to `:root`.
