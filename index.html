@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark" style="--ui-scale: 1;">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +22,47 @@
     <div class="scene__grain"></div>
   </div>
 
-  <div class="app-shell">
+  <!-- SETTINGS PANEL (outside app-shell so fixed positioning is reliable) -->
+  <div class="settings-panel glass-panel glass-panel--strong" id="settingsPanel" role="dialog" aria-label="Settings" aria-hidden="true">
+    <div class="settings-panel__head">
+      <strong>Settings</strong>
+      <button type="button" class="button button--ghost button--icon" id="settingsClose" aria-label="Close settings">✕</button>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-label" for="scaleRange">Interface scale</label>
+      <div class="scale-control">
+        <span class="scale-value" id="scaleValue">100%</span>
+        <input type="range" id="scaleRange" min="50" max="100" value="100" step="1" aria-valuemin="50" aria-valuemax="100" aria-valuenow="100" />
+        <div class="scale-ends"><span>50%</span><span>100%</span></div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <span class="settings-label">Language</span>
+      <div class="settings-row">
+        <button type="button" class="button button--ghost button--compact lang-option is-active" data-lang="en">EN</button>
+        <button type="button" class="button button--ghost button--compact lang-option" data-lang="fil">FIL</button>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <span class="settings-label">Theme</span>
+      <div class="settings-row">
+        <button type="button" class="button button--ghost button--compact theme-option is-active" data-theme="dark">Dark · Glass</button>
+        <button type="button" class="button button--ghost button--compact theme-option" data-theme="light" disabled title="Coming soon">Light · Skeuo (soon)</button>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <span class="settings-label">Motion</span>
+      <div class="settings-row">
+        <button type="button" class="button button--ghost button--compact" id="motionToggle" aria-pressed="false">Motion on</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-shell" id="appShell">
     <!-- HEADER -->
     <header class="topbar glass-panel">
       <a class="brand" href="#top" aria-label="Roberto home">
@@ -50,48 +90,7 @@
       </div>
     </header>
 
-    <!-- SETTINGS PANEL -->
-    <div class="settings-panel glass-panel glass-panel--strong" id="settingsPanel" hidden>
-      <div class="settings-panel__head">
-        <strong>Settings</strong>
-        <button type="button" class="button button--ghost button--icon" id="settingsClose" aria-label="Close settings">✕</button>
-      </div>
-
-      <div class="settings-group">
-        <label class="settings-label" for="scaleRange">Interface scale</label>
-        <div class="scale-control">
-          <span class="scale-value" id="scaleValue">100%</span>
-          <input type="range" id="scaleRange" min="50" max="100" value="100" step="1" aria-valuemin="50" aria-valuemax="100" aria-valuenow="100" />
-          <div class="scale-ends"><span>50%</span><span>100%</span></div>
-        </div>
-      </div>
-
-      <div class="settings-group">
-        <span class="settings-label">Language</span>
-        <div class="settings-row">
-          <button type="button" class="button button--ghost button--compact lang-option is-active" data-lang="en">EN</button>
-          <button type="button" class="button button--ghost button--compact lang-option" data-lang="fil">FIL</button>
-        </div>
-      </div>
-
-      <div class="settings-group">
-        <span class="settings-label">Theme</span>
-        <div class="settings-row">
-          <button type="button" class="button button--ghost button--compact theme-option is-active" data-theme="dark">Dark · Glass</button>
-          <button type="button" class="button button--ghost button--compact theme-option" data-theme="light" disabled title="Coming soon">Light · Skeuo (soon)</button>
-        </div>
-      </div>
-
-      <div class="settings-group">
-        <span class="settings-label">Motion</span>
-        <div class="settings-row">
-          <button type="button" class="button button--ghost button--compact" id="motionToggle" aria-pressed="false">Motion on</button>
-        </div>
-      </div>
-    </div>
-
     <main id="top">
-      <!-- HERO -->
       <section class="hero" id="hero">
         <div class="hero__copy glass-panel glass-panel--soft reveal">
           <div class="eyebrow">
@@ -140,7 +139,6 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
       <section class="section" id="about">
         <div class="section__heading reveal">
           <div class="section__label"><span class="section-index">01</span><span class="section-kicker" data-i18n="aboutKicker">ABOUT ME</span></div>
@@ -161,7 +159,6 @@
         </div>
       </section>
 
-      <!-- SERVICES -->
       <section class="section" id="services">
         <div class="section__heading reveal">
           <div class="section__label"><span class="section-index">02</span><span class="section-kicker" data-i18n="servicesKicker">SERVICES</span></div>
@@ -176,7 +173,6 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
       <section class="section" id="projects">
         <div class="section__heading reveal">
           <div class="section__label"><span class="section-index">03</span><span class="section-kicker" data-i18n="projectsKicker">PROJECTS</span></div>
@@ -190,7 +186,6 @@
         </div>
       </section>
 
-      <!-- EDUCATION -->
       <section class="section" id="education">
         <div class="section__heading reveal">
           <div class="section__label"><span class="section-index">04</span><span class="section-kicker" data-i18n="eduKicker">EDUCATION</span></div>
@@ -203,7 +198,6 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
       <section class="section contact-section" id="contact">
         <div class="contact-panel glass-panel reveal">
           <div class="section__label"><span class="section-index">05</span><span class="section-kicker" data-i18n="contactKicker">CONTACT</span></div>
@@ -213,7 +207,6 @@
         </div>
       </section>
 
-      <!-- CREDITS -->
       <section class="section" id="credits">
         <div class="section__heading reveal">
           <div class="section__label"><span class="section-index">06</span><span class="section-kicker">CREDITS</span></div>
