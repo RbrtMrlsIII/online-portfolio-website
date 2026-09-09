@@ -25,34 +25,34 @@ Declare:
 - **Media:** live video must be optimized, muted/autoplay-safe, layered behind content, and provided with a graceful fallback. Current Mixkit video is accepted for non-commercial use with credit.
 - **i18n:** translations are structured data with stable keys; language switching should preserve layout quality and animate responsibly.
 - **Validation:** use reproducible tests and record real evidence. Never convert an environmental failure into a product PASS.
+- **Document continuity:** whenever the user introduces a new product idea, record it in Product Law (or the appropriate governance file) and implement it consistently.
 
-## Root & Token Usage Rules (Important)
+## Root & Token Usage Rules
 
-The current design tokens are **temporary defaults** under the Glassmorphism direction. Follow these rules when working with roots:
+1. Always prefer tokens over hard-coded values.
+2. Use semantic shortcuts (`--ink`, `--glass`, `--accent`, `--ui-scale`, etc.).
+3. Glass panels must use the `.glass-panel` family.
+4. When changing roots, update both `styles.css` and `design-tokens.md`.
+5. Video treatment uses `--video-*` tokens.
+6. Overall scale is controlled by `--ui-scale` (0.5–1.0) from Settings.
 
-1. **Always prefer tokens** over hard-coded values for colors, spacing, radii, blur, shadows, and motion.
-2. Use the semantic shortcuts when available:
-   - `--ink`, `--muted`, `--dim`
-   - `--line`, `--glass`, `--glass-strong`
-   - `--accent`, `--accent-2`
-   - `--shadow`, `--radius`
-3. Glass panels must use the `.glass-panel` family (`--strong` / `--soft` variants) instead of inventing new glass styles.
-4. Do not introduce new color values unless exploring. If a new value proves useful, promote it to `:root` and document it in `design-tokens.md`.
-5. Blur, saturation, and border values should come from the glass tokens (`--glass-blur`, `--glass-saturate`, etc.).
-6. Video treatment must stay subordinate to the UI (use the existing `--video-*` tokens).
-7. When changing roots, update both `styles.css` and `design-tokens.md` together.
-8. Nothing is locked yet — roots can still evolve, but changes must remain coherent with the Glassmorphism direction.
+## Settings system (required)
 
-## Structural Component Rules (Phase 02+)
+Settings live in a dedicated panel opened from the header and must include:
 
-When building UI, prefer these reusable patterns:
+- **Interface scale** (50%–100%) via continuous slider / drag
+- **Language** (EN / FIL)
+- **Theme** (Dark · Glassmorphism current / Light · Skeuomorphism soon)
+- **Motion** toggle
 
-- **Buttons:** `.button`, `.button--primary`, `.button--ghost`, `.button--large`, `.button--icon`
-- **Panels / Cards:** `.glass-panel`, `.glass-panel--strong`, `.glass-panel--soft`
-- **Sections:** consistent `.section` + `.section__heading` structure
-- **Chips / Badges:** `.chip` / floating chip pattern
-- **Navigation items:** clean text links with hover/focus states
-- Keep components token-driven and avoid one-off styles.
+## Structural Component Rules
+
+- Buttons: `.button`, `.button--primary`, `.button--ghost`, `.button--large`, `.button--icon`, `.button--compact`
+- Panels / Cards: `.glass-panel`, `.glass-panel--strong`, `.glass-panel--soft`
+- Sections: `.section` + `.section__heading` + `.section__label`
+- Chips: `.chip` / `.chip--floating`
+- Navigation: `.nav__link` with hover / focus / active states
+- Keep components token-driven.
 
 ## Phase handoff
 
