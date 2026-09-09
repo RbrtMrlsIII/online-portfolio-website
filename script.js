@@ -81,13 +81,7 @@ const copy = {
   }
 };
 
-const state = {
-  lang: 'en',
-  motion: true,
-  theme: 'dark',
-  scale: 100
-};
-
+const state = { lang: 'en', motion: true, theme: 'dark', scale: 100 };
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -109,9 +103,9 @@ function applyScale(value) {
   document.documentElement.style.setProperty('--ui-scale', String(ratio));
   const scaleValue = $('#scaleValue');
   const scaleRange = $('#scaleRange');
-  if (scaleValue) scaleValue.textContent = `${state.scale}%`;
+  if (scaleValue) scaleValue.textContent = state.scale + '%';
   if (scaleRange) {
-    scaleRange.value = state.scale;
+    scaleRange.value = String(state.scale);
     scaleRange.setAttribute('aria-valuenow', String(state.scale));
   }
 }
@@ -134,91 +128,116 @@ function applyMotion(on) {
   }
 }
 
-/* Settings panel */
+/* Settings — class-based open (reliable) */
 const settingsPanel = $('#settingsPanel');
 const settingsToggle = $('#settingsToggle');
 const settingsClose = $('#settingsClose');
 
 function openSettings() {
   if (!settingsPanel) return;
-  settingsPanel.hidden = false;
-  settingsToggle?.setAttribute('aria-expanded', 'true');
+  settingsPanel.classList.add('is-open');
+  settingsPanel.setAttribute('aria-hidden', 'false');
+  if (settingsToggle) settingsToggle.setAttribute('aria-expanded', 'true');
 }
 
 function closeSettings() {
   if (!settingsPanel) return;
-  settingsPanel.hidden = true;
-  settingsToggle?.setAttribute('aria-expanded', 'false');
+  settingsPanel.classList.remove('is-open');
+  settingsPanel.setAttribute('aria-hidden', 'true');
+  if (settingsToggle) settingsToggle.setAttribute('aria-expanded', 'false');
 }
 
-settingsToggle?.addEventListener('click', () => {
-  if (settingsPanel?.hidden) openSettings();
-  else closeSettings();
-});
+if (settingsToggle) {
+  settingsToggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (settingsPanel && settingsPanel.classList.contains('is-open')) closeSettings();
+    else openSettings();
+  });
+}
 
-settingsClose?.addEventListener('click', closeSettings);
+if (settingsClose) {
+  settingsClose.addEventListener('click', function (e) {
+    e.preventDefault();
+    closeSettings();
+  });
+}
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') closeSettings();
 });
 
-/* Scale slider */
-$('#scaleRange')?.addEventListener('input', (e) => {
-  applyScale(e.target.value);
+document.addEventListener('click', function (e) {
+  if (!settingsPanel || !settingsPanel.classList.contains('is-open')) return;
+  if (settingsPanel.contains(e.target)) return;
+  if (settingsToggle && settingsToggle.contains(e.target)) return;
+  closeSettings();
 });
 
-/* Language options inside settings */
-$$('.lang-option').forEach((btn) => {
-  btn.addEventListener('click', () => {
+const scaleRange = $('#scaleRange');
+if (scaleRange) {
+  scaleRange.addEventListener('input', function (e) {
+    applyScale(e.target.value);
+  });
+}
+
+$$('.lang-option').forEach(function (btn) {
+  btn.addEventListener('click', function () {
     state.lang = btn.dataset.lang;
     applyLanguage();
   });
 });
 
-/* Theme options */
-$$('.theme-option').forEach((btn) => {
-  btn.addEventListener('click', () => {
+$$('.theme-option').forEach(function (btn) {
+  btn.addEventListener('click', function () {
     if (btn.disabled) return;
     applyTheme(btn.dataset.theme);
   });
 });
 
-/* Motion */
-$('#motionToggle')?.addEventListener('click', () => {
-  applyMotion(!state.motion);
-});
+var motionBtn = $('#motionToggle');
+if (motionBtn) {
+  motionBtn.addEventListener('click', function () {
+    applyMotion(!state.motion);
+  });
+}
 
 /* Mobile nav */
-const nav = $('#primaryNav');
-const navToggle = $('#navToggle');
+var nav = $('#primaryNav');
+var navToggle = $('#navToggle');
 
-navToggle?.addEventListener('click', () => {
-  const open = nav.classList.toggle('is-open');
-  navToggle.setAttribute('aria-expanded', String(open));
-  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-});
+if (navToggle && nav) {
+  navToggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var open = nav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+}
 
-$$('.nav__link').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav?.classList.remove('is-open');
-    navToggle?.setAttribute('aria-expanded', 'false');
-    navToggle?.setAttribute('aria-label', 'Open menu');
+$$('.nav__link').forEach(function (link) {
+  link.addEventListener('click', function () {
+    if (nav) nav.classList.remove('is-open');
+    if (navToggle) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    }
     closeSettings();
   });
 });
 
-/* Active nav on scroll */
-const sections = ['about', 'services', 'projects', 'education', 'contact'];
-const navLinks = $$('.nav__link');
+var sections = ['about', 'services', 'projects', 'education', 'contact'];
+var navLinks = $$('.nav__link');
 
 function updateActiveNav() {
-  const scrollY = window.scrollY + 120;
-  let current = '';
-  sections.forEach((id) => {
-    const el = document.getElementById(id);
+  var scrollY = window.scrollY + 120;
+  var current = '';
+  sections.forEach(function (id) {
+    var el = document.getElementById(id);
     if (el && el.offsetTop <= scrollY) current = id;
   });
-  navLinks.forEach((link) => {
+  navLinks.forEach(function (link) {
     link.classList.toggle('is-active', link.getAttribute('data-nav') === current);
   });
 }
@@ -226,47 +245,24 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 updateActiveNav();
 
-/* Tilt */
-const tilt = $('[data-tilt]');
+var tilt = $('[data-tilt]');
 if (tilt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  tilt.addEventListener('pointermove', (event) => {
+  tilt.addEventListener('pointermove', function (event) {
     if (!state.motion) return;
-    const rect = tilt.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    const card = tilt.querySelector('.hero-card');
+    var rect = tilt.getBoundingClientRect();
+    var x = (event.clientX - rect.left) / rect.width - 0.5;
+    var y = (event.clientY - rect.top) / rect.height - 0.5;
+    var card = tilt.querySelector('.hero-card');
     if (card) {
-      card.style.transform = `perspective(1200px) rotateX(${y * -4}deg) rotateY(${x * 9 - 6}deg) translateZ(0)`;
+      card.style.transform = 'perspective(1200px) rotateX(' + (y * -4) + 'deg) rotateY(' + (x * 9 - 6) + 'deg) translateZ(0)';
     }
   });
-  tilt.addEventListener('pointerleave', () => {
-    const card = tilt.querySelector('.hero-card');
+  tilt.addEventListener('pointerleave', function () {
+    var card = tilt.querySelector('.hero-card');
     if (card) card.style.transform = '';
   });
 }
 
-/* Reveal */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
-
-$$('.section .reveal').forEach((el) => {
-  el.style.animationPlayState = 'paused';
-  observer.observe(el);
-});
-
-document.addEventListener('animationstart', () => {
-  $$('.is-visible').forEach((el) => {
-    el.style.animationPlayState = 'running';
-  });
-});
-
-/* Init */
 applyLanguage();
 applyScale(100);
 applyTheme('dark');
