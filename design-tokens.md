@@ -2,43 +2,57 @@
 
 ## Purpose
 
-This file is the canonical map for the portfolio's visual roots. CSS custom properties in `styles.css` are the implementation source; this document explains what each family controls.
+This file is the canonical map for the portfolio's visual roots. CSS custom properties in `styles.css` are the implementation source.
 
-**Important:** The current roots are temporary defaults. They are not permanent. We can change the color system, glass treatment, and overall direction freely.
+**Status:** These are temporary defaults under the new **Glassmorphism** direction. Nothing is locked yet.
 
 ## Current direction
 
-**Glassmorphism** is the primary visual approach:
-- Translucent surfaces
-- Backdrop blur
+**Glassmorphism**
+- Translucent glass surfaces
+- Backdrop blur + slight saturation
 - Soft light borders
-- Layered depth
-- Clean, modern glass panels
+- Layered depth with subtle shadows
+- Dark cool background that works with the coral reef video
 
-The previous warm “Ember Glass” palette is no longer locked in.
+## Theme (temporary)
 
-## Root families
+| Token | Value | Role |
+|-------|-------|------|
+| `--color-bg-0` | `#0b0f14` | Page background |
+| `--color-bg-1` | `#111827` | Secondary surface |
+| `--color-bg-2` | `#1e293b` | Elevated surface |
+| `--color-surface` | `rgba(255,255,255,0.06)` | Standard glass |
+| `--color-surface-strong` | `rgba(255,255,255,0.10)` | Stronger glass |
+| `--color-surface-soft` | `rgba(255,255,255,0.04)` | Soft glass |
+| `--color-ink` | `#f1f5f9` | Primary text |
+| `--color-text` | `#e2e8f0` | Body text |
+| `--color-muted` | `#94a3b8` | Secondary text |
+| `--color-dim` | `#64748b` | Tertiary text |
+| `--color-line` | `rgba(255,255,255,0.14)` | Borders |
+| `--color-accent` | `#7dd3fc` | Soft cyan accent |
+| `--color-accent-2` | `#bae6fd` | Lighter accent |
+| `--color-success` | `#4ade80` | Status |
 
-- **Theme:** background, glass surfaces, text, lines, accent, status colors.
-- **Typography:** display/body/mono stacks, scale, leading, tracking, hero and section ranges.
-- **Spacing:** base rhythm from 4px upward plus responsive section spacing.
-- **Shape & depth:** radii, glass blur/saturation, shadows, borders.
-- **Motion:** easing, durations, stagger, lift, morph scale and blur.
-- **Responsive:** content width, gutters, tablet/phone thresholds, touch target sizes.
-- **Layering:** canonical z-index levels for scene, content, and navigation.
+## Glass treatment
 
-## Canonical rule
+- `--glass-blur: 18px`
+- `--glass-blur-heavy: 28px`
+- `--glass-saturate: 140%`
+- `--glass-border: 1px`
+- `--shadow-glass`: soft outer + subtle inner highlight
 
-Components should consume tokens. New hard-coded values are allowed during exploration, but reusable values should be promoted to `:root` once they stabilize.
+## Video treatment (tuned for Mixkit coral reef)
 
-## Live-video roots
+- `--video-opacity: 0.45`
+- `--video-saturation: 1.05`
+- `--video-contrast: 1.05`
+- `--video-brightness: 0.55`
 
-Video belongs to the scene layer and must remain visually subordinate to content. Current video asset:
+## Typography, Spacing, Motion, Responsive, Layering
 
-- `assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4`
-- Accepted for non-commercial use
-- Credit will be given to Mixkit
+These families remain the same structure as before (still temporary). See `styles.css` `:root` for the full list.
 
-## Status
+## Rule
 
-All tokens remain temporary until Phase 02 and Phase 03 decisions are locked.
+Components should prefer tokens. Hard-coded values are acceptable during exploration. Once a value stabilizes, promote it to `:root`.
