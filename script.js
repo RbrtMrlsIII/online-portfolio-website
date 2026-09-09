@@ -67,7 +67,7 @@ const copy = {
     svc4Text: 'Mabilis na exploration ng ideas gamit ang modern tooling habang nananatiling sentral ang craft.',
     projectsKicker: 'MGA PROYEKTO',
     projectsTitle: 'Mga piling gawa at eksperimento.',
-    projectsText: 'Isang maliit na set ng high-signal projects. Maaaring dagdagan ng case studies sa ibang pagkakataon.',
+    projectsText: 'Isang maliit na set ng high-signal projects.',
     eduKicker: 'EDUKASYON',
     eduTitle: 'Landas ng pag-aaral.',
     eduText: 'Pormal na pag-aaral at tuloy-tuloy na self-directed learning.',
@@ -81,7 +81,13 @@ const copy = {
   }
 };
 
-const state = { lang: 'en', motion: true };
+const state = {
+  lang: 'en',
+  motion: true,
+  theme: 'dark',
+  scale: 100
+};
+
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -92,22 +98,97 @@ function applyLanguage() {
     const key = node.dataset.i18n;
     if (dict[key]) node.textContent = dict[key];
   });
-  $('#langLabel').textContent = state.lang === 'en' ? 'EN' : 'FIL';
-  $('#langAlt').textContent = state.lang === 'en' ? 'FIL' : 'EN';
+  $$('.lang-option').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.lang === state.lang);
+  });
 }
 
-$('#langSwitch')?.addEventListener('click', () => {
-  state.lang = state.lang === 'en' ? 'fil' : 'en';
-  applyLanguage();
+function applyScale(value) {
+  state.scale = Number(value);
+  const ratio = state.scale / 100;
+  document.documentElement.style.setProperty('--ui-scale', String(ratio));
+  const scaleValue = $('#scaleValue');
+  const scaleRange = $('#scaleRange');
+  if (scaleValue) scaleValue.textContent = `${state.scale}%`;
+  if (scaleRange) {
+    scaleRange.value = state.scale;
+    scaleRange.setAttribute('aria-valuenow', String(state.scale));
+  }
+}
+
+function applyTheme(theme) {
+  state.theme = theme;
+  document.documentElement.setAttribute('data-theme', theme);
+  $$('.theme-option').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.theme === theme);
+  });
+}
+
+function applyMotion(on) {
+  state.motion = on;
+  document.body.classList.toggle('motion-off', !on);
+  const btn = $('#motionToggle');
+  if (btn) {
+    btn.setAttribute('aria-pressed', String(!on));
+    btn.textContent = on ? 'Motion on' : 'Motion off';
+  }
+}
+
+/* Settings panel */
+const settingsPanel = $('#settingsPanel');
+const settingsToggle = $('#settingsToggle');
+const settingsClose = $('#settingsClose');
+
+function openSettings() {
+  if (!settingsPanel) return;
+  settingsPanel.hidden = false;
+  settingsToggle?.setAttribute('aria-expanded', 'true');
+}
+
+function closeSettings() {
+  if (!settingsPanel) return;
+  settingsPanel.hidden = true;
+  settingsToggle?.setAttribute('aria-expanded', 'false');
+}
+
+settingsToggle?.addEventListener('click', () => {
+  if (settingsPanel?.hidden) openSettings();
+  else closeSettings();
 });
 
+settingsClose?.addEventListener('click', closeSettings);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSettings();
+});
+
+/* Scale slider */
+$('#scaleRange')?.addEventListener('input', (e) => {
+  applyScale(e.target.value);
+});
+
+/* Language options inside settings */
+$$('.lang-option').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    state.lang = btn.dataset.lang;
+    applyLanguage();
+  });
+});
+
+/* Theme options */
+$$('.theme-option').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    if (btn.disabled) return;
+    applyTheme(btn.dataset.theme);
+  });
+});
+
+/* Motion */
 $('#motionToggle')?.addEventListener('click', () => {
-  state.motion = !state.motion;
-  document.body.classList.toggle('motion-off', !state.motion);
-  $('#motionToggle').setAttribute('aria-pressed', String(!state.motion));
+  applyMotion(!state.motion);
 });
 
-/* Mobile nav toggle */
+/* Mobile nav */
 const nav = $('#primaryNav');
 const navToggle = $('#navToggle');
 
@@ -117,31 +198,28 @@ navToggle?.addEventListener('click', () => {
   navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 });
 
-/* Close mobile nav when a link is clicked */
 $$('.nav__link').forEach((link) => {
   link.addEventListener('click', () => {
     nav?.classList.remove('is-open');
     navToggle?.setAttribute('aria-expanded', 'false');
     navToggle?.setAttribute('aria-label', 'Open menu');
+    closeSettings();
   });
 });
 
-/* Active nav link on scroll */
+/* Active nav on scroll */
 const sections = ['about', 'services', 'projects', 'education', 'contact'];
 const navLinks = $$('.nav__link');
 
 function updateActiveNav() {
   const scrollY = window.scrollY + 120;
   let current = '';
-
   sections.forEach((id) => {
     const el = document.getElementById(id);
     if (el && el.offsetTop <= scrollY) current = id;
   });
-
   navLinks.forEach((link) => {
-    const isActive = link.getAttribute('data-nav') === current;
-    link.classList.toggle('is-active', isActive);
+    link.classList.toggle('is-active', link.getAttribute('data-nav') === current);
   });
 }
 
@@ -188,4 +266,8 @@ document.addEventListener('animationstart', () => {
   });
 });
 
+/* Init */
 applyLanguage();
+applyScale(100);
+applyTheme('dark');
+applyMotion(true);
