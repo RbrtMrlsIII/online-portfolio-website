@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark" style="--ui-scale: 1;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,15 +11,7 @@
 <body>
   <!-- FULL-SITE FIXED SCENE -->
   <div class="scene" aria-hidden="true">
-    <video
-      class="scene__video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      data-background-video
-    >
+    <video class="scene__video" autoplay muted loop playsinline preload="auto" data-background-video>
       <source src="assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4" type="video/mp4" />
     </video>
     <div class="scene__video-shade"></div>
@@ -47,13 +39,8 @@
       </nav>
 
       <div class="topbar__actions">
-        <button class="button button--ghost button--compact lang-switch" id="langSwitch" type="button" aria-label="Switch language">
-          <span id="langLabel">EN</span>
-          <span class="lang-switch__dot"></span>
-          <span id="langAlt">FIL</span>
-        </button>
-        <button class="button button--ghost button--icon" id="motionToggle" type="button" aria-label="Toggle motion" title="Toggle motion">
-          <span class="pulse-dot"></span>
+        <button class="button button--ghost button--icon" id="settingsToggle" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settingsPanel" title="Settings">
+          <span class="settings-icon" aria-hidden="true">⚙</span>
         </button>
         <button class="button button--ghost button--icon nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
           <span class="nav-toggle__bar"></span>
@@ -62,6 +49,46 @@
         </button>
       </div>
     </header>
+
+    <!-- SETTINGS PANEL -->
+    <div class="settings-panel glass-panel glass-panel--strong" id="settingsPanel" hidden>
+      <div class="settings-panel__head">
+        <strong>Settings</strong>
+        <button type="button" class="button button--ghost button--icon" id="settingsClose" aria-label="Close settings">✕</button>
+      </div>
+
+      <div class="settings-group">
+        <label class="settings-label" for="scaleRange">Interface scale</label>
+        <div class="scale-control">
+          <span class="scale-value" id="scaleValue">100%</span>
+          <input type="range" id="scaleRange" min="50" max="100" value="100" step="1" aria-valuemin="50" aria-valuemax="100" aria-valuenow="100" />
+          <div class="scale-ends"><span>50%</span><span>100%</span></div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <span class="settings-label">Language</span>
+        <div class="settings-row">
+          <button type="button" class="button button--ghost button--compact lang-option is-active" data-lang="en">EN</button>
+          <button type="button" class="button button--ghost button--compact lang-option" data-lang="fil">FIL</button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <span class="settings-label">Theme</span>
+        <div class="settings-row">
+          <button type="button" class="button button--ghost button--compact theme-option is-active" data-theme="dark">Dark · Glass</button>
+          <button type="button" class="button button--ghost button--compact theme-option" data-theme="light" disabled title="Coming soon">Light · Skeuo (soon)</button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <span class="settings-label">Motion</span>
+        <div class="settings-row">
+          <button type="button" class="button button--ghost button--compact" id="motionToggle" aria-pressed="false">Motion on</button>
+        </div>
+      </div>
+    </div>
 
     <main id="top">
       <!-- HERO -->
@@ -72,20 +99,11 @@
             <span data-i18n="available">AVAILABLE FOR SELECT PROJECTS</span>
           </div>
           <p class="kicker" data-i18n="kicker">CREATIVE TECHNOLOGIST · DIGITAL EXPERIENCE BUILDER</p>
-          <h1>
-            <span>Roberto</span><br />
-            <em>Cabalse Morales III</em>
-          </h1>
-          <p class="hero__lede" data-i18n="lede">
-            I build expressive digital experiences where motion, interface, story, and technology meet.
-          </p>
+          <h1><span>Roberto</span><br /><em>Cabalse Morales III</em></h1>
+          <p class="hero__lede" data-i18n="lede">I build expressive digital experiences where motion, interface, story, and technology meet.</p>
           <div class="hero__ctas">
-            <a class="button button--primary" href="#projects">
-              <span data-i18n="explore">Explore work</span><span>↗</span>
-            </a>
-            <a class="button button--ghost" href="#contact">
-              <span data-i18n="contactMe">Start a conversation</span><span>○</span>
-            </a>
+            <a class="button button--primary" href="#projects"><span data-i18n="explore">Explore work</span><span>↗</span></a>
+            <a class="button button--ghost" href="#contact"><span data-i18n="contactMe">Start a conversation</span><span>○</span></a>
           </div>
           <div class="hero__meta">
             <div><strong>PH</strong><span data-i18n="location">Philippines</span></div>
@@ -111,20 +129,13 @@
               <div><small>01 / 05</small><strong>ORIGIN</strong></div>
             </div>
           </div>
-
           <div class="chip chip--floating chip--top glass-panel">
             <span class="chip__icon">✦</span>
-            <span>
-              <small>VISUAL SYSTEM</small>
-              <strong data-i18n="glass">Glassmorphism</strong>
-            </span>
+            <span><small>VISUAL SYSTEM</small><strong data-i18n="glass">Glassmorphism</strong></span>
           </div>
           <div class="chip chip--floating chip--bottom glass-panel">
             <span class="chip__icon">◌</span>
-            <span>
-              <small>BUILD MODE</small>
-              <strong>WebGL / UI / Motion</strong>
-            </span>
+            <span><small>BUILD MODE</small><strong>WebGL / UI / Motion</strong></span>
           </div>
         </div>
       </section>
@@ -132,27 +143,15 @@
       <!-- ABOUT -->
       <section class="section" id="about">
         <div class="section__heading reveal">
-          <div class="section__label">
-            <span class="section-index">01</span>
-            <span class="section-kicker" data-i18n="aboutKicker">ABOUT ME</span>
-          </div>
+          <div class="section__label"><span class="section-index">01</span><span class="section-kicker" data-i18n="aboutKicker">ABOUT ME</span></div>
           <h2 data-i18n="aboutTitle">Design the feeling, then engineer the surface.</h2>
-          <p data-i18n="aboutText">
-            Roberto is a creative technologist focused on making digital products feel alive.
-            The work sits between product thinking and visual experimentation.
-          </p>
+          <p data-i18n="aboutText">Roberto is a creative technologist focused on making digital products feel alive. The work sits between product thinking and visual experimentation.</p>
         </div>
-
         <div class="about-grid">
           <div class="about-copy glass-panel reveal reveal--delay">
-            <p class="lead" data-i18n="aboutLead">
-              I care about interfaces that feel intentional — where motion, hierarchy, and technology serve the story.
-            </p>
-            <p data-i18n="aboutBody">
-              From product UI systems to experimental WebGL and AI-assisted workflows, I build experiences that remain usable on a phone while still feeling expressive on a large screen.
-            </p>
+            <p class="lead" data-i18n="aboutLead">I care about interfaces that feel intentional — where motion, hierarchy, and technology serve the story.</p>
+            <p data-i18n="aboutBody">From product UI systems to experimental WebGL and AI-assisted workflows, I build experiences that remain usable on a phone while still feeling expressive on a large screen.</p>
           </div>
-
           <div class="spec-list glass-panel reveal reveal--delay-2">
             <div><span>01</span><strong>PRODUCT UI</strong><small>Systems / flows / prototypes</small></div>
             <div><span>02</span><strong>WEBGL</strong><small>Meshes / shaders / spatial UI</small></div>
@@ -165,150 +164,63 @@
       <!-- SERVICES -->
       <section class="section" id="services">
         <div class="section__heading reveal">
-          <div class="section__label">
-            <span class="section-index">02</span>
-            <span class="section-kicker" data-i18n="servicesKicker">SERVICES</span>
-          </div>
+          <div class="section__label"><span class="section-index">02</span><span class="section-kicker" data-i18n="servicesKicker">SERVICES</span></div>
           <h2 data-i18n="servicesTitle">What I can help with.</h2>
           <p data-i18n="servicesText">Selected capabilities for product teams, startups, and experimental projects.</p>
         </div>
-
         <div class="services-grid">
-          <article class="card glass-panel reveal">
-            <div class="card__header"><span>01</span><span>INTERFACE</span></div>
-            <div class="card__body">
-              <h3 data-i18n="svc1Title">Product UI & Design Systems</h3>
-              <p data-i18n="svc1Text">Clean, scalable interface systems with strong hierarchy, responsive behavior, and thoughtful interaction details.</p>
-            </div>
-          </article>
-          <article class="card glass-panel reveal reveal--delay">
-            <div class="card__header"><span>02</span><span>EXPERIENCE</span></div>
-            <div class="card__body">
-              <h3 data-i18n="svc2Title">Interactive & Motion Experiences</h3>
-              <p data-i18n="svc2Text">Motion systems, microinteractions, and cinematic UI that feel intentional rather than decorative.</p>
-            </div>
-          </article>
-          <article class="card glass-panel reveal reveal--delay-2">
-            <div class="card__header"><span>03</span><span>SPATIAL</span></div>
-            <div class="card__body">
-              <h3 data-i18n="svc3Title">WebGL & Spatial Interfaces</h3>
-              <p data-i18n="svc3Text">Lightweight 3D / WebGL layers used as progressive enhancement on top of solid DOM experiences.</p>
-            </div>
-          </article>
-          <article class="card glass-panel reveal">
-            <div class="card__header"><span>04</span><span>PROTOTYPING</span></div>
-            <div class="card__body">
-              <h3 data-i18n="svc4Title">AI-Assisted Prototyping</h3>
-              <p data-i18n="svc4Text">Fast exploration of ideas using modern tooling while keeping craft and product thinking central.</p>
-            </div>
-          </article>
+          <article class="card glass-panel reveal"><div class="card__header"><span>01</span><span>INTERFACE</span></div><div class="card__body"><h3 data-i18n="svc1Title">Product UI & Design Systems</h3><p data-i18n="svc1Text">Clean, scalable interface systems with strong hierarchy, responsive behavior, and thoughtful interaction details.</p></div></article>
+          <article class="card glass-panel reveal reveal--delay"><div class="card__header"><span>02</span><span>EXPERIENCE</span></div><div class="card__body"><h3 data-i18n="svc2Title">Interactive & Motion Experiences</h3><p data-i18n="svc2Text">Motion systems, microinteractions, and cinematic UI that feel intentional rather than decorative.</p></div></article>
+          <article class="card glass-panel reveal reveal--delay-2"><div class="card__header"><span>03</span><span>SPATIAL</span></div><div class="card__body"><h3 data-i18n="svc3Title">WebGL & Spatial Interfaces</h3><p data-i18n="svc3Text">Lightweight 3D / WebGL layers used as progressive enhancement on top of solid DOM experiences.</p></div></article>
+          <article class="card glass-panel reveal"><div class="card__header"><span>04</span><span>PROTOTYPING</span></div><div class="card__body"><h3 data-i18n="svc4Title">AI-Assisted Prototyping</h3><p data-i18n="svc4Text">Fast exploration of ideas using modern tooling while keeping craft and product thinking central.</p></div></article>
         </div>
       </section>
 
       <!-- PROJECTS -->
       <section class="section" id="projects">
         <div class="section__heading reveal">
-          <div class="section__label">
-            <span class="section-index">03</span>
-            <span class="section-kicker" data-i18n="projectsKicker">PROJECTS</span>
-          </div>
+          <div class="section__label"><span class="section-index">03</span><span class="section-kicker" data-i18n="projectsKicker">PROJECTS</span></div>
           <h2 data-i18n="projectsTitle">Selected work & experiments.</h2>
           <p data-i18n="projectsText">A small set of high-signal projects. More case studies can be added here later.</p>
         </div>
-
         <div class="project-grid">
-          <article class="card project-card glass-panel reveal" data-project="01">
-            <div class="card__header project-card__top"><span>01</span><span>CONCEPT</span></div>
-            <div class="project-card__art project-card__art--one"><div class="project-sphere"></div><div class="scanline"></div></div>
-            <div class="card__body project-card__body">
-              <h3>Immersive Home Finder</h3>
-              <p>Spatial discovery interface using WebGL surfaces, maps, and responsive booking states.</p>
-              <span class="project-link">VIEW CASE <b>↗</b></span>
-            </div>
-          </article>
-          <article class="card project-card glass-panel reveal reveal--delay" data-project="02">
-            <div class="card__header project-card__top"><span>02</span><span>EXPERIMENT</span></div>
-            <div class="project-card__art project-card__art--two"><div class="rings"></div><div class="signal"></div></div>
-            <div class="card__body project-card__body">
-              <h3>Signal Interface</h3>
-              <p>Motion-first dashboard studies with layered controls, glass surfaces, and ambient data.</p>
-              <span class="project-link">VIEW CASE <b>↗</b></span>
-            </div>
-          </article>
-          <article class="card project-card glass-panel reveal reveal--delay-2" data-project="03">
-            <div class="card__header project-card__top"><span>03</span><span>PLAYGROUND</span></div>
-            <div class="project-card__art project-card__art--three"><div class="cube"></div><div class="orbit"></div></div>
-            <div class="card__body project-card__body">
-              <h3>Mesh / Motion Lab</h3>
-              <p>Small WebGL prototypes exploring depth, shaders, particles, and tactile transitions.</p>
-              <span class="project-link">VIEW CASE <b>↗</b></span>
-            </div>
-          </article>
+          <article class="card project-card glass-panel reveal" data-project="01"><div class="card__header project-card__top"><span>01</span><span>CONCEPT</span></div><div class="project-card__art project-card__art--one"><div class="project-sphere"></div><div class="scanline"></div></div><div class="card__body project-card__body"><h3>Immersive Home Finder</h3><p>Spatial discovery interface using WebGL surfaces, maps, and responsive booking states.</p><span class="project-link">VIEW CASE <b>↗</b></span></div></article>
+          <article class="card project-card glass-panel reveal reveal--delay" data-project="02"><div class="card__header project-card__top"><span>02</span><span>EXPERIMENT</span></div><div class="project-card__art project-card__art--two"><div class="rings"></div><div class="signal"></div></div><div class="card__body project-card__body"><h3>Signal Interface</h3><p>Motion-first dashboard studies with layered controls, glass surfaces, and ambient data.</p><span class="project-link">VIEW CASE <b>↗</b></span></div></article>
+          <article class="card project-card glass-panel reveal reveal--delay-2" data-project="03"><div class="card__header project-card__top"><span>03</span><span>PLAYGROUND</span></div><div class="project-card__art project-card__art--three"><div class="cube"></div><div class="orbit"></div></div><div class="card__body project-card__body"><h3>Mesh / Motion Lab</h3><p>Small WebGL prototypes exploring depth, shaders, particles, and tactile transitions.</p><span class="project-link">VIEW CASE <b>↗</b></span></div></article>
         </div>
       </section>
 
       <!-- EDUCATION -->
       <section class="section" id="education">
         <div class="section__heading reveal">
-          <div class="section__label">
-            <span class="section-index">04</span>
-            <span class="section-kicker" data-i18n="eduKicker">EDUCATION</span>
-          </div>
+          <div class="section__label"><span class="section-index">04</span><span class="section-kicker" data-i18n="eduKicker">EDUCATION</span></div>
           <h2 data-i18n="eduTitle">Learning path.</h2>
           <p data-i18n="eduText">Formal studies and continuous self-directed learning. Details can be expanded later.</p>
         </div>
-
         <div class="education-list">
-          <article class="card glass-panel reveal">
-            <div class="card__body">
-              <div class="edu-meta"><span class="section-index">01</span><span class="edu-year">—</span></div>
-              <h3 data-i18n="edu1Title">Education item placeholder</h3>
-              <p data-i18n="edu1Text">Institution / program details will go here.</p>
-            </div>
-          </article>
-          <article class="card glass-panel reveal reveal--delay">
-            <div class="card__body">
-              <div class="edu-meta"><span class="section-index">02</span><span class="edu-year">—</span></div>
-              <h3 data-i18n="edu2Title">Continuous learning</h3>
-              <p data-i18n="edu2Text">Self-directed studies in interface design, creative coding, and emerging tools.</p>
-            </div>
-          </article>
+          <article class="card glass-panel reveal"><div class="card__body"><div class="edu-meta"><span class="section-index">01</span><span class="edu-year">—</span></div><h3 data-i18n="edu1Title">Education item placeholder</h3><p data-i18n="edu1Text">Institution / program details will go here.</p></div></article>
+          <article class="card glass-panel reveal reveal--delay"><div class="card__body"><div class="edu-meta"><span class="section-index">02</span><span class="edu-year">—</span></div><h3 data-i18n="edu2Title">Continuous learning</h3><p data-i18n="edu2Text">Self-directed studies in interface design, creative coding, and emerging tools.</p></div></article>
         </div>
       </section>
 
       <!-- CONTACT -->
       <section class="section contact-section" id="contact">
         <div class="contact-panel glass-panel reveal">
-          <div class="section__label">
-            <span class="section-index">05</span>
-            <span class="section-kicker" data-i18n="contactKicker">CONTACT</span>
-          </div>
+          <div class="section__label"><span class="section-index">05</span><span class="section-kicker" data-i18n="contactKicker">CONTACT</span></div>
           <h2 data-i18n="contactTitle">Let's build the next screen.</h2>
           <p data-i18n="contactText">For collaborations, experiments, or a serious interface that needs more personality.</p>
-          <a class="button button--primary button--large" href="mailto:hello@robertomorales.dev">
-            <span>hello@robertomorales.dev</span><span>↗</span>
-          </a>
+          <a class="button button--primary button--large" href="mailto:hello@robertomorales.dev"><span>hello@robertomorales.dev</span><span>↗</span></a>
         </div>
       </section>
 
       <!-- CREDITS -->
       <section class="section" id="credits">
         <div class="section__heading reveal">
-          <div class="section__label">
-            <span class="section-index">06</span>
-            <span class="section-kicker">CREDITS</span>
-          </div>
+          <div class="section__label"><span class="section-index">06</span><span class="section-kicker">CREDITS</span></div>
           <h2>Attribution</h2>
         </div>
         <div class="credits-panel glass-panel reveal">
-          <p>
-            Background video:
-            <a href="https://mixkit.co/free-stock-video/beautiful-coral-reef-with-exotic-reef-fish-44868/" target="_blank" rel="noopener noreferrer">
-              Beautiful coral reef with exotic reef fish
-            </a>
-            by <strong>Mixkit</strong>.
-            Used under the Mixkit license for non-commercial purposes with attribution.
-          </p>
+          <p>Background video: <a href="https://mixkit.co/free-stock-video/beautiful-coral-reef-with-exotic-reef-fish-44868/" target="_blank" rel="noopener noreferrer">Beautiful coral reef with exotic reef fish</a> by <strong>Mixkit</strong>. Used under the Mixkit license for non-commercial purposes with attribution.</p>
           <p class="credits-note">Portrait and all other design & code by Roberto Cabalse Morales III.</p>
         </div>
       </section>
