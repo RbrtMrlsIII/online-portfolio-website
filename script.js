@@ -32,12 +32,8 @@
       contactMe: 'Start a conversation',
       location: 'Philippines',
       mode: 'Always experimenting',
-      glass: 'Glassmorphism',
-      aboutKicker: 'ABOUT ME',
       aboutTitle: 'Design the feeling, then engineer the surface.',
-      aboutText: 'Roberto is a creative technologist focused on making digital products feel alive.',
-      aboutLead: 'I care about interfaces that feel intentional — where motion, hierarchy, and technology serve the story.',
-      aboutBody: 'From product UI systems to experimental WebGL and AI-assisted workflows, I build experiences that remain usable on a phone while still feeling expressive on a large screen.'
+      aboutText: 'Roberto is a creative technologist focused on making digital products feel alive.'
     },
     fil: {
       available: 'AVAILABLE PARA SA PILING PROJECTS',
@@ -47,12 +43,8 @@
       contactMe: 'Magsimula ng usapan',
       location: 'Pilipinas',
       mode: 'Laging nag-eeksperimento',
-      glass: 'Glassmorphism',
-      aboutKicker: 'TUNGKOL SA AKIN',
       aboutTitle: 'Disenyo muna ng pakiramdam, saka engineering ng surface.',
-      aboutText: 'Si Roberto ay isang creative technologist na gumagawa ng digital products na parang buhay.',
-      aboutLead: 'Mahalaga sa akin ang interfaces na intentional — kung saan nagsisilbi ang motion, hierarchy, at teknolohiya sa kuwento.',
-      aboutBody: 'Mula product UI systems hanggang experimental WebGL at AI-assisted workflows, gumagawa ako ng experiences na usable sa phone at expressive pa rin sa malaking screen.'
+      aboutText: 'Si Roberto ay isang creative technologist na gumagawa ng digital products na parang buhay.'
     }
   };
 
@@ -68,7 +60,8 @@
   function $(sel) { return document.querySelector(sel); }
   function $$(sel) { return document.querySelectorAll(sel); }
   function isMobile() { return window.matchMedia('(max-width: 980px)').matches; }
-  function initialScale() { return isMobile() ? 55 : 100; }
+  /* Default always 100% — 55% transform-scale was the "stick" bug */
+  function initialScale() { return 100; }
 
   function applyLanguage() {
     var dict = copy[state.lang];
@@ -88,12 +81,13 @@
     state.scale = Number(value);
     if (isNaN(state.scale)) state.scale = initialScale();
     state.scale = Math.max(50, Math.min(100, state.scale));
+    /* Layout-aware scale via CSS zoom on html — NOT transform on .app-shell */
     document.documentElement.style.setProperty('--ui-scale', String(state.scale / 100));
     var scaleValue = $('#scaleValue');
     var scaleRange = $('#scaleRange');
     if (scaleValue) scaleValue.textContent = state.scale + '%';
     if (scaleRange) scaleRange.value = String(state.scale);
-    log('scale', { value: state.scale, touched: state.scaleTouched });
+    log('scale', { value: state.scale, touched: state.scaleTouched, method: 'html-zoom' });
   }
 
   function applyTheme(theme) {
@@ -113,7 +107,6 @@
     log('motion', on);
   }
 
-  /* Settings */
   var settingsPanel = $('#settingsPanel');
   var settingsToggle = $('#settingsToggle');
   var settingsClose = $('#settingsClose');
@@ -151,18 +144,13 @@
     });
   }
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeSettings();
-      closeNavDropdown();
-    }
+    if (e.key === 'Escape') { closeSettings(); closeNavDropdown(); }
   });
   document.addEventListener('click', function (e) {
-    if (settingsOpen) {
-      if (!(settingsPanel && settingsPanel.contains(e.target)) &&
-          !(settingsToggle && (e.target === settingsToggle || settingsToggle.contains(e.target)))) {
-        closeSettings();
-      }
-    }
+    if (!settingsOpen) return;
+    if (settingsPanel && settingsPanel.contains(e.target)) return;
+    if (settingsToggle && (e.target === settingsToggle || settingsToggle.contains(e.target))) return;
+    closeSettings();
   });
 
   var scaleRange = $('#scaleRange');
@@ -191,7 +179,6 @@
     });
   }
 
-  /* Mobile hamburger */
   var nav = $('#primaryNav');
   var navToggle = $('#navToggle');
   if (navToggle && nav) {
@@ -204,7 +191,6 @@
     });
   }
 
-  /* Scrolled dropdown menu */
   var navDropdownToggle = $('#navDropdownToggle');
   var navDropdownMenu = $('#navDropdownMenu');
   function closeNavDropdown() {
@@ -221,11 +207,6 @@
       navDropdownToggle.setAttribute('aria-expanded', String(open));
       log('navDropdown', open ? 'open' : 'close');
     });
-    document.addEventListener('click', function (e) {
-      if (navDropdownMenu.hidden) return;
-      if (navDropdownMenu.contains(e.target) || navDropdownToggle.contains(e.target)) return;
-      closeNavDropdown();
-    });
   }
 
   $$('.nav__link').forEach(function (link) {
@@ -237,7 +218,6 @@
     });
   });
 
-  /* Scroll header morph: full nav → dropdown; R → portrait; name → Roberto */
   var header = $('#siteHeader');
   var brandName = $('#brandName');
   var brandSub = $('#brandSub');
@@ -273,7 +253,6 @@
     });
   }
 
-  /* Typing roles */
   var typedEl = $('#typedRole');
   var roleIndex = 0;
   var charIndex = 0;
@@ -310,29 +289,24 @@
 
   function startTyping() {
     if (typeTimer) clearTimeout(typeTimer);
-    roleIndex = 0;
-    charIndex = 0;
-    deleting = false;
+    roleIndex = 0; charIndex = 0; deleting = false;
     typeTick();
     log('typing', 'start');
   }
 
-  /* Parallax video */
   var sceneVideo = $('.scene__video');
   var parallaxRaf = null;
   function updateParallax() {
     parallaxRaf = null;
     if (!sceneVideo || !state.motion) return;
-    var shift = Math.min(window.scrollY * 0.12, 180);
-    var scale = isMobile() ? 1.04 : 1.08;
-    sceneVideo.style.transform = 'translate3d(0,' + shift + 'px,0) scale(' + scale + ')';
+    var shift = Math.min(window.scrollY * 0.15, 220);
+    sceneVideo.style.transform = 'translate3d(0,' + shift + 'px,0)';
   }
   window.addEventListener('scroll', function () {
     if (parallaxRaf) return;
     parallaxRaf = requestAnimationFrame(onScroll);
   }, { passive: true });
 
-  /* Tilt */
   var tilt = $('[data-tilt]');
   if (tilt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     tilt.addEventListener('pointermove', function (event) {
@@ -355,7 +329,7 @@
   applyMotion(true);
   startTyping();
   onScroll();
-  log('boot', { mobile: isMobile(), scale: state.scale });
+  log('boot', { mobile: isMobile(), scale: state.scale, scaleMethod: 'html-zoom' });
 
   window.addEventListener('resize', function () {
     if (!state.scaleTouched) applyScale(initialScale(), false);
