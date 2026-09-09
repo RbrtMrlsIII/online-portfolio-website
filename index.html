@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1d1712" />
+  <meta name="description" content="Roberto Cabalse Morales III. Creative technologist portfolio." />
+  <title>Roberto Morales III · Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <video class="scene__video" autoplay muted loop playsinline preload="metadata" data-background-video hidden></video>
+    <div class="scene__video-shade"></div>
+    <div class="scene__wash"></div>
+    <div class="scene__orb scene__orb--one"></div>
+    <div class="scene__orb scene__orb--two"></div>
+    <div class="scene__grid"></div>
+    <div class="scene__grain"></div>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar glass-panel">
+      <a class="brand" href="#top" aria-label="Roberto home">
+        <span class="brand__mark">R</span>
+        <span class="brand__text">ROBERTO</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#work" data-nav="work">Work</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#lab" data-nav="lab">Lab</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch language">
+          <span id="langLabel">EN</span>
+          <span class="lang-switch__dot"></span>
+          <span id="langAlt">FIL</span>
+        </button>
+        <button class="icon-button" id="motionToggle" type="button" aria-label="Toggle motion" title="Toggle motion">
+          <span class="pulse-dot"></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero__copy glass-panel glass-panel--soft reveal">
+          <div class="eyebrow"><span class="status-dot"></span><span data-i18n="available">AVAILABLE FOR SELECT PROJECTS</span></div>
+          <p class="kicker" data-i18n="kicker">CREATIVE TECHNOLOGIST · DIGITAL EXPERIENCE BUILDER</p>
+          <h1><span>Roberto</span><br><em>Cabalse Morales III</em></h1>
+          <p class="hero__lede" data-i18n="lede">I build expressive digital experiences where motion, interface, story, and technology meet.</p>
+          <div class="hero__ctas">
+            <a class="button button--primary" href="#work"><span data-i18n="explore">Explore work</span><span>↗</span></a>
+            <a class="button button--ghost" href="#contact"><span data-i18n="contactMe">Start a conversation</span><span>○</span></a>
+          </div>
+          <div class="hero__meta">
+            <div><strong>PH</strong><span data-i18n="location">Philippines</span></div>
+            <div><strong>03</strong><span data-i18n="focus">Web · AI · 3D</span></div>
+            <div><strong>∞</strong><span data-i18n="mode">Always experimenting</span></div>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal reveal--late" data-tilt>
+          <div class="halo"></div>
+          <div class="hero-card glass-panel">
+            <div class="hero-card__chrome">
+              <span>LIVE PORTRAIT</span>
+              <span class="chrome-live"><span class="status-dot"></span> ONLINE</span>
+            </div>
+            <div class="portrait-wrap">
+              <div class="portrait-glow"></div>
+              <img src="assets/roberto-hero.jpg" alt="Illustrated portrait used as Roberto's portfolio hero asset" />
+            </div>
+            <div class="hero-card__footer">
+              <div><small>IDENTITY</small><strong>ROBERTO M.</strong></div>
+              <div class="meter"><span></span></div>
+              <div><small>01 / 05</small><strong>ORIGIN</strong></div>
+            </div>
+          </div>
+          <div class="floating-chip chip--top glass-panel">
+            <span class="chip-icon">✦</span>
+            <span><small>VISUAL SYSTEM</small><strong data-i18n="glass">Glass + Skeuomorph</strong></span>
+          </div>
+          <div class="floating-chip chip--bottom glass-panel">
+            <span class="chip-icon">◌</span>
+            <span><small>BUILD MODE</small><strong>WebGL / UI / Motion</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="ticker glass-panel" aria-label="Capabilities">
+        <span>INTERFACE DESIGN</span><b>✦</b><span>CREATIVE DEVELOPMENT</span><b>✦</b><span>WEBGL EXPERIENCES</span><b>✦</b><span>AI PROTOTYPING</span><b>✦</b><span>MOTION SYSTEMS</span>
+      </section>
+
+      <section class="section" id="work">
+        <div class="section__heading reveal">
+          <div><span class="section-index">01</span><span class="section-kicker" data-i18n="selectedWork">SELECTED WORK</span></div>
+          <h2 data-i18n="workTitle">Small number, high signal.</h2>
+          <p data-i18n="workText">A portfolio system designed to expand from a single visual identity into a living collection of experiments, products, and interfaces.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card glass-panel reveal" data-project="01">
+            <div class="project-card__top"><span>01</span><span>CONCEPT</span></div>
+            <div class="project-card__art project-card__art--one"><div class="project-sphere"></div><div class="scanline"></div></div>
+            <div class="project-card__body"><h3>Immersive Home Finder</h3><p>Spatial discovery interface using WebGL surfaces, maps, and responsive booking states.</p><span class="project-link">VIEW CASE <b>↗</b></span></div>
+          </article>
+          <article class="project-card glass-panel reveal reveal--delay" data-project="02">
+            <div class="project-card__top"><span>02</span><span>EXPERIMENT</span></div>
+            <div class="project-card__art project-card__art--two"><div class="rings"></div><div class="signal"></div></div>
+            <div class="project-card__body"><h3>Signal Interface</h3><p>Motion-first dashboard studies with layered controls, glass surfaces, and ambient data.</p><span class="project-link">VIEW CASE <b>↗</b></span></div>
+          </article>
+          <article class="project-card glass-panel reveal reveal--delay-2" data-project="03">
+            <div class="project-card__top"><span>03</span><span>PLAYGROUND</span></div>
+            <div class="project-card__art project-card__art--three"><div class="cube"></div><div class="orbit"></div></div>
+            <div class="project-card__body"><h3>Mesh / Motion Lab</h3><p>Small WebGL prototypes exploring depth, shaders, particles, and tactile transitions.</p><span class="project-link">VIEW CASE <b>↗</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section about-grid" id="about">
+        <div class="section__heading reveal">
+          <div><span class="section-index">02</span><span class="section-kicker">ABOUT ROBERTO</span></div>
+          <h2 data-i18n="aboutTitle">Design the feeling, then engineer the surface.</h2>
+        </div>
+        <div class="about-copy glass-panel reveal reveal--delay">
+          <p class="lead" data-i18n="aboutLead">Roberto is a creative technologist focused on making digital products feel alive.</p>
+          <p data-i18n="aboutText">The work sits between product thinking and visual experimentation: elegant interfaces, expressive motion, immersive 3D, and practical systems that still behave beautifully on a phone.</p>
+          <div class="spec-list">
+            <div><span>01</span><strong>PRODUCT UI</strong><small>Systems / flows / prototypes</small></div>
+            <div><span>02</span><strong>WEBGL</strong><small>Meshes / shaders / spatial UI</small></div>
+            <div><span>03</span><strong>AI</strong><small>Experiments / agents / tooling</small></div>
+            <div><span>04</span><strong>MOTION</strong><small>Microinteractions / transitions</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section lab-section" id="lab">
+        <div class="section__heading reveal">
+          <div><span class="section-index">03</span><span class="section-kicker">THE LAB</span></div>
+          <h2 data-i18n="labTitle">The background is not decoration.</h2>
+          <p data-i18n="labText">This portfolio is prepared for a cinematic video layer. The supplied portrait is the hero asset today; the background engine is ready for a live video texture when one is dropped into the project.</p>
+        </div>
+        <div class="lab-console glass-panel reveal reveal--delay">
+          <div class="console-head"><span>SCENE COMPOSITOR</span><span>BUILD 001</span></div>
+          <div class="console-grid">
+            <div class="console-screen"><div class="console-scan"></div><div class="console-core"><span>VIDEO</span><strong>READY</strong><small>FALLBACK: AMBIENT MOTION</small></div></div>
+            <div class="console-controls">
+              <label><span>PARALLAX</span><input type="range" min="0" max="100" value="68" disabled></label>
+              <label><span>GLASS DENSITY</span><input type="range" min="0" max="100" value="76" disabled></label>
+              <label><span>LIGHT RESPONSE</span><input type="range" min="0" max="100" value="84" disabled></label>
+              <div class="console-note"><span class="status-dot"></span><p data-i18n="readyNote">System ready for the next visual asset.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="contact-panel glass-panel reveal">
+          <div><span class="section-index">04</span><span class="section-kicker">CONTACT</span></div>
+          <h2 data-i18n="contactTitle">Let's build the next screen.</h2>
+          <p data-i18n="contactText">For collaborations, experiments, or a serious interface that needs more personality.</p>
+          <a class="button button--primary button--large" href="mailto:hello@robertomorales.dev"><span>hello@robertomorales.dev</span><span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 Roberto Cabalse Morales III</span>
+      <span>BUILT FOR THE WEB · WITH CURIOSITY</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
