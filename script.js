@@ -8,7 +8,7 @@ const copy = {
     location: 'Philippines',
     focus: 'Web · AI · 3D',
     mode: 'Always experimenting',
-    glass: 'Glass + Skeuomorph',
+    glass: 'Glassmorphism',
     selectedWork: 'SELECTED WORK',
     workTitle: 'Small number, high signal.',
     workText: 'A portfolio system designed to expand from a single visual identity into a living collection of experiments, products, and interfaces.',
@@ -30,7 +30,7 @@ const copy = {
     location: 'Pilipinas',
     focus: 'Web · AI · 3D',
     mode: 'Laging nag-eeksperimento',
-    glass: 'Glass + Skeuomorph',
+    glass: 'Glassmorphism',
     selectedWork: 'PINILING GAWA',
     workTitle: 'Kaunti pero matindi ang signal.',
     workText: 'Isang portfolio system na puwedeng lumawak mula sa iisang visual identity tungo sa koleksiyon ng experiments, produkto, at interfaces.',
@@ -100,7 +100,4 @@ document.addEventListener('animationstart', () => {
   document.querySelectorAll('.is-visible').forEach((el) => el.style.animationPlayState = 'running');
 });
 
-// The background architecture is intentionally asset-light. A future MP4 can be added
-// without changing the page composition: place it at assets/background.mp4 and swap
-// the scene layer to a <video> texture in a later iteration.
 applyLanguage();
