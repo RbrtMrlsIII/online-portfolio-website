@@ -1,66 +1,52 @@
 # Validation Protocol
 
-**Project:** Roberto Cabalse Morales III (Roberto)  
 **Discipline:** ORUCAVEAM
 
-## Rule
-A phase/slice is not complete because code was written. It is complete only when acceptance checks pass and the result is recorded here.
-
-## Status values
-- `PASS`
-- `PARTIAL`
-- `FAIL`
-- `N/A`
-- `PENDING`
-
----
-
 ## Phase 01 — Foundation
-**Result:** PASS (2026-09-09)
+**Result:** PASS
 
 ---
 
-## Current slice — Bright video + Mobile header + Settings + ORUCAVEAM adoption
-**Date:** 2026-09-09  
-**ORUCAVEAM plan:** `EXECUTION_PLAN.md`
+## Slice — Settings / Nav contrast / Scale (defect fix)
+**Date:** 2026-09-09
 
-### Static checks (repo on main) — VERIFIED
+### User-reported defects
+1. Settings button unresponsive
+2. Navigation nearly fading (low contrast)
+3. Scale slider nowhere to be found
 
-| Check | Status | Evidence |
-|-------|--------|----------|
-| `--video-opacity: 0.78` in styles.css | **PASS** | styles.css line 33 |
-| `--video-brightness: 0.88` in styles.css | **PASS** | styles.css line 36 |
-| `--color-scene-vignette: 0.28` | **PASS** | styles.css line 6 |
-| Settings panel `#settingsPanel` in index.html | **PASS** | index.html |
-| Scale range `#scaleRange` present | **PASS** | index.html |
-| Mobile `#navToggle` present | **PASS** | index.html |
-| `applyScale` in script.js | **PASS** | script.js |
-| Mixkit mp4 present under assets/ | **PASS** | 11.7 MB file present |
-| `ORUCAVEAM.md` present | **PASS** | root |
-| `EXECUTION_PLAN.md` present | **PASS** | root |
-| Product Law items 14–20 present | **PASS** | product-law.md |
+### Root causes found
+1. Settings used `hidden` + fragile positioning; `html { zoom }` broke fixed panels
+2. Nav links used `--muted` (#94a3b8) over bright video
+3. Slider lives inside Settings — unreachable when panel fails
 
-### Browser checks (user environment)
+### Fixes applied
+| Fix | Status |
+|-----|--------|
+| Settings uses class `.is-open` + solid fixed panel outside app-shell | DONE |
+| Removed `html { zoom }` — scale via `.app-shell { transform: scale() }` | DONE |
+| Nav links forced to high contrast `#e2e8f0` / `#fff` + text-shadow | DONE |
+| Settings panel darker opaque glass so controls are visible | DONE |
+| Scale range input styled and visible when panel open | DONE |
+| Click handlers use preventDefault/stopPropagation | DONE |
 
-| Check | Status | Notes |
-|-------|--------|-------|
-| Hard refresh shows brighter video | **PENDING** | User must hard-refresh (Ctrl+Shift+R / clear cache) |
-| ⚙ opens Settings | **PENDING** | |
-| Scale 50–100% works | **PENDING** | |
-| Mobile menu opens | **PENDING** | |
-| Language EN/FIL works | **PENDING** | |
+### Static verification
+| Check | Status |
+|-------|--------|
+| `#settingsPanel` outside `.app-shell` | PASS |
+| `.settings-panel.is-open { display: grid }` | PASS |
+| `.nav__link { color: #e2e8f0 }` | PASS |
+| `#scaleRange` present | PASS |
+| No `html { zoom }` | PASS |
 
-**Slice Result:** `PARTIAL`
+### Browser confirmation (user)
+| Check | Status |
+|-------|--------|
+| ⚙ opens Settings panel | PENDING |
+| Scale slider visible and works 50–100% | PENDING |
+| Nav links clearly readable | PENDING |
+| Mobile hamburger works | PENDING |
 
-- Static implementation: **PASS**
-- Live browser confirmation: **PENDING** (required from user)
+**Slice result:** PARTIAL — code fix complete; awaiting user hard-refresh confirmation
 
-## Why it may look unchanged
-
-1. Browser cache serving old CSS/JS
-2. Hard refresh required after token changes
-3. Previous slices did not include formal Verification (ORUCAVEAM V) — corrected now
-
-## Continuation rule
-
-After user confirms browser checks, update this file to PASS and record endorsement.
+**Action for user:** Hard refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`) then test ⚙ and nav.
