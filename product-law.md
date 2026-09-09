@@ -19,7 +19,7 @@ This is the highest-level rule set for Roberto Cabalse Morales III's portfolio. 
 ## Settings & User Controls
 
 14. Settings are first-class. Core experience controls live in a dedicated Settings panel accessible from the header.
-15. Scale control. Users can adjust the overall interface scale from 50% to 100% via a continuous control. The scale must apply to the whole experience.
+15. Scale control. Users can adjust the overall interface scale from 50% to 100% via a continuous control. **There is a single scale authority** — no competing mobile/desktop auto loops after the user sets a value.
 16. Language control. Language switching (EN / FIL) is available inside Settings.
 17. Theme control. Dark = Glassmorphism (current). Light = Skeuomorphism (planned).
 18. Document continuity. Whenever a new product idea is introduced by the user, it must be recorded in Product Law (or the appropriate governance file) and implemented consistently.
@@ -28,3 +28,10 @@ This is the highest-level rule set for Roberto Cabalse Morales III's portfolio. 
 
 19. **ORUCAVEAM is the single execution discipline** for this project (adapted from TeamAi).
 20. No implementation may be treated as complete without Objective → Restrictions → User Authority → Canonical Authority → Action → Verification → Efficiency → Audit → Minimal resource use, plus recorded evidence.
+
+## Branch & verification policy (Option B — 2026-09-09)
+
+21. **Test branch first.** UI/behavior work lands on a `test/*` branch. `main` receives only verified merges.
+22. **Verification must produce logs.** Runtime verification events are written to `window.__PORTFOLIO_VERIFY_LOG__` / console `[verify]`.
+23. **If the verification log does not change when an interaction is expected, the check is FAIL.** No silent “assumed working.”
+24. Mobile default scale is **55%** only as the initial value when the user has not touched the scale control.

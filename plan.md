@@ -8,125 +8,135 @@ Current color roots are temporary defaults and can still change.
 
 ## Delivery law
 
-Work one phase at a time. The Git repository (main branch) is the canonical source of truth and handoff. A phase is not complete until validation is recorded and the corresponding endorsement authorizes continuation.
+Work one phase at a time. **Option B branch policy:** UI/behavior work lands on `test/*` first; `main` receives only verified merges. A phase is not complete until validation is recorded (with logs where required) and endorsement authorizes continuation.
+
+---
+
+## Hero page specification (canonical — 2026-09-09)
+
+The **Hero** is the primary landing surface and must contain:
+
+### Identity
+- Portrait image (current asset: `assets/IMG_20250712_095315.jpg`)
+- Full name: **Roberto Cabalse Morales III**
+- Short description / lede
+
+### Typing text (rotating roles)
+Animated typewriter / cycle through:
+
+1. Frontend Developer  
+2. Backend Developer  
+3. UI/UX Developer  
+4. Full Stack Developer  
+5. AI Team Developer  
+6. AI-Augmented  
+7. AI-Powered Software  
+8. AI-Assisted Creator  
+9. AI Trainer  
+10. Guitarist  
+
+### Social icons (magnificent, first-class)
+Must include clear, polished icons + accessible labels/links for:
+
+- Discord  
+- Facebook  
+- LinkedIn  
+- YouTube  
+- Viber  
+- Email (generic mailto)  
+- Gmail  
+- Outlook  
+- GitHub  
+
+### Supporting messages
+Short secondary lines that reinforce availability, focus, or invitation (eyebrow / meta / support copy).
+
+---
+
+## Header behavior specification (canonical — 2026-09-09)
+
+### At top of page (not scrolled)
+- Full header navigation visible (About, Services, Projects, Education, Contact)
+- Brand mark + full logo treatment as designed for top state
+
+### When scrolled
+1. **Navigation collapses** into a **dropdown menu** (compact control)
+2. **Portrait image migrates into the header** and **replaces the “R” mark** (image becomes the logo)
+3. **Name in header becomes “Roberto”** (short form)
+4. Settings control remains available
+5. Sticky header remains usable on mobile and desktop
+
+### Interaction notes
+- Scroll threshold should be intentional (not flicker)
+- Reduced-motion users still get the compact header without aggressive animation
+- Dropdown must be keyboard accessible and touch-friendly
+
+---
 
 ## Phase 01 — Foundation & Project Rules
 
-Establish the self-contained project structure, asset policy, identity, local serving baseline, governance documents, validation harness, and numeric root/token system.
-
-Output: stable blank-canvas project with canonical documentation and a measurable `:root` design system.
-
-Gate: validation PASS + endorsement APPROVED.  
 **Status: COMPLETE (2026-09-09)**
 
 ## Phase 02 — Art Direction & Design System
 
-Turn the (temporary) numeric roots into a clean **Glassmorphism** visual system **and establish the reusable structural component foundation**.
+Structural + Glassmorphism component foundation.
 
-### Structural goals (must be done in this phase)
+**In progress** on `test/*` branches (Option B).
 
-Create clean, reusable structural patterns before heavy visual polish:
+Must align with Hero + Header specifications above.
 
-- Button system (primary, ghost, large, icon)
-- Section pattern (consistent heading + content structure)
-- Card / Panel system (glass variants)
-- Navigation items
-- Chips / floating labels / badges
-- Basic form controls (for future use)
-- Optional: simple tabs or segment control (useful for Work / Lab later)
-
-### Visual goals
-
-- Pure Glassmorphism material (translucent surfaces, blur, soft borders, depth)
-- Flexible color system (current roots are defaults only)
-- Typography hierarchy
-- Hover / press / focus-visible / active states for all interactive elements
-- Morph / depth transitions using existing motion tokens
-- Mobile adaptations of the component system
+### Structural goals
+- Button system, sections, cards/panels, chips
+- Navigation (full + scrolled dropdown)
+- Sticky compact header with image→logo + name→Roberto
+- Social icon set (hero)
+- Typing text component
 
 ### Output
+Reusable primitives + hero/header behavior matching the specifications.
 
-- Reusable structural + visual primitives
-- Updated `index.html` that uses the new component classes consistently
-- Coherent art-directed static experience across desktop and mobile
-- Token system remains flexible (nothing locked yet)
-
-Gate: validation PASS + endorsement APPROVED.
+Gate: validation PASS (logs where required) + endorsement APPROVED.
 
 ## Phase 03 — Cinematic Scene & Live Video Architecture
 
-Implement the scene pipeline for a live video background with fallback behavior, masking/shading, video performance controls, and clear separation from DOM UI.
-
-**Current video asset:**
-`assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4`
-
-- Accepted for non-commercial use
-- Credit will be given to Mixkit
-
-Output: production-ready scene layer with local video-ready hooks and resilient fallback.
+Live video background, parallax, mobile framing, Mixkit credit.
 
 ## Phase 04 — Motion & Transition System
 
-Build canonical entrance, hover, press, page/section transitions, morphing, stagger, and reduced-motion behavior using the root motion system.
-
-Output: unified motion language.
+Entrance, typewriter, header morph, reduced-motion.
 
 ## Phase 05 — Roberto Visual Anchor
 
-Refine Roberto's supplied portrait treatment, framing, responsive placement, depth, lighting integration, and interaction behavior.
-
-Output: Roberto becomes the persistent visual anchor without obstructing content.
+Portrait treatment; scrolled header uses the same image as logo.
 
 ## Phase 06 — WebGL Progressive Enhancement
 
-Introduce WebGL, meshes, shaders, particles, depth effects, and GPU-aware fallbacks while preserving the DOM experience.
-
-Output: WebGL-enhanced cinematic layer with no accessibility dependency.
+Optional GPU layer; never blocks DOM.
 
 ## Phase 07 — Content Architecture & Translation
 
-Formalize content data, EN/FIL translation, animated language switching, metadata, and extensible locale structure.
-
-Output: canonical content/translation architecture.
+EN/FIL + structured content for roles, socials, messages.
 
 ## Phase 08 — Portfolio Content Experience
 
-Build work/project presentation, about, lab, experience, and contact flows using the approved visual system.
-
-Output: complete information architecture and content experience.
+About, Services, Projects, Education, Contact, Credits.
 
 ## Phase 09 — Tactile Interaction
 
-Add physical-feeling controls, depth response, pointer/touch interactions, focus/pressed states, and calibrated motion.
-
-Output: tactile interaction layer.
+Depth, press, focus, pointer/touch.
 
 ## Phase 10 — Responsive Viewport Strategy
 
-Deep-test desktop, tablet, mobile, orientation changes, safe areas, dynamic viewport units, and touch behavior.
-
-Output: viewport-specific compositions and stable responsive behavior.
+Desktop / tablet / mobile compositions for hero + sticky header.
 
 ## Phase 11 — Performance & Accessibility
 
-Optimize video, rendering, asset loading, motion, semantic structure, keyboard navigation, contrast, reduced motion, and degraded environments.
-
-Output: measured performance/accessibility baseline.
+Video, contrast, keyboard, reduced motion.
 
 ## Phase 12 — Browser & Device Validation
 
-Run canonical browser smoke tests and real-device validation across supported surfaces.
-
-Output: evidence-backed release candidate.
+Evidence-backed checks; log-growth rule for interactive controls.
 
 ## Phase 13 — Final Product QA
 
-Review the whole experience against Product Law, Product Vision, canonical roots, content, responsive behavior, and regression risk.
-
-Output: release-ready product snapshot.
-
 ## Phase 14 — Release & Handover
-
-Prepare final documentation, deployment packaging, and final endorsement.
-
-Output: production-ready Roberto portfolio.
