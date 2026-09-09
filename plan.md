@@ -19,9 +19,34 @@ Gate: validation PASS + endorsement APPROVED.
 
 ## Phase 02 — Art Direction & Design System
 
-Turn the numeric roots into the canonical Roberto visual system: glass material variants, ember lighting, typography hierarchy, controls, buttons, cards, navigation, hover/press/focus states, morph transitions, and mobile adaptations.
+Turn the numeric roots into the canonical Roberto visual system **and establish the reusable structural component foundation**.
 
-Output: reusable visual primitives and a coherent art-directed static experience.
+### Structural goals (must be done in this phase)
+
+Create clean, reusable structural patterns before heavy visual polish:
+
+- Button system (primary, ghost, large, icon)
+- Section pattern (consistent heading + content structure)
+- Card / Panel system (glass variants: soft, strong, elevated)
+- Navigation items
+- Chips / floating labels / badges
+- Basic form controls (for future use)
+- Optional: simple tabs or segment control (useful for Work / Lab later)
+
+### Visual goals
+
+- Glass material variants with ember lighting
+- Typography hierarchy
+- Hover / press / focus-visible / active states for all interactive elements
+- Morph / depth transitions using existing motion tokens
+- Mobile adaptations of the component system (composition changes, not just scaling)
+
+### Output
+
+- Reusable structural + visual primitives
+- Updated `index.html` that uses the new component classes consistently
+- Coherent art-directed static experience across desktop and mobile
+- Everything remains token-driven (no random hardcoded values)
 
 Gate: validation PASS + endorsement APPROVED.
 
@@ -30,6 +55,8 @@ Gate: validation PASS + endorsement APPROVED.
 Implement the scene pipeline for a live video background with fallback behavior, masking/shading, video performance controls, and clear separation from DOM UI.
 
 Output: production-ready scene layer with local video-ready hooks and resilient fallback.
+
+**Note:** A Mixkit coral reef video (`assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4`) has been uploaded and is available for evaluation during this phase.
 
 ## Phase 04 — Motion & Transition System
 
