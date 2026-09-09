@@ -15,15 +15,15 @@ Canonical map of the portfolio's visual roots. Implementation lives in `styles.c
 | Token | Value | Role |
 |-------|-------|------|
 | `--color-bg-0` | `#070b12` | Deepest page background |
-| `--color-scene-vignette` | `rgba(4,7,14,0.45)` | Softer video darkening |
+| `--color-scene-vignette` | `rgba(4,7,14,0.28)` | Light vignette so video stays bright |
 
 ### Glass Surfaces (lightened)
 
 | Token | Value | Role |
 |-------|-------|------|
-| `--color-surface` | `rgba(255,255,255,0.10)` | Standard glass |
-| `--color-surface-strong` | `rgba(255,255,255,0.14)` | Stronger glass |
-| `--color-surface-soft` | `rgba(255,255,255,0.07)` | Soft glass |
+| `--color-surface` | `rgba(255,255,255,0.11)` | Standard glass |
+| `--color-surface-strong` | `rgba(255,255,255,0.16)` | Stronger glass |
+| `--color-surface-soft` | `rgba(255,255,255,0.08)` | Soft glass |
 
 ### Glass Material
 
@@ -33,14 +33,22 @@ Canonical map of the portfolio's visual roots. Implementation lives in `styles.c
 | `--glass-blur-heavy` | `22px` |
 | `--glass-saturate` | `140%` |
 
-### Video (brighter / more natural)
+### Video (bright / natural)
 
 | Token | Value | Notes |
 |-------|-------|-------|
-| `--video-opacity` | `0.62` | Higher visibility |
-| `--video-brightness` | `0.72` | Closer to normal quality |
-| `--video-saturation` | `1.05` | |
-| `--video-contrast` | `1.05` | |
+| `--video-opacity` | `0.78` | Much brighter |
+| `--video-brightness` | `0.88` | Near-normal quality |
+| `--video-saturation` | `1.08` | |
+| `--video-contrast` | `1.04` | |
+
+### Scale system
+
+| Token | Value | Role |
+|-------|-------|------|
+| `--ui-scale` | `1` (100%) | Overall interface scale (0.5 – 1.0) |
+
+Applied on `html` via `zoom` / transform strategy controlled from Settings.
 
 ### Accent
 
@@ -51,10 +59,11 @@ Canonical map of the portfolio's visual roots. Implementation lives in `styles.c
 
 ---
 
-## Rules (from skill.md)
+## Rules (from skill.md + product-law)
 
 1. Always prefer tokens over hard-coded values.
 2. Use semantic shortcuts (`--ink`, `--glass`, `--accent`, etc.).
 3. Glass panels use the `.glass-panel` family.
 4. When changing roots, update both `styles.css` and this file.
-5. Nothing is locked yet — roots can still evolve.
+5. New product ideas must be recorded in Product Law.
+6. Nothing is locked yet — roots can still evolve.
