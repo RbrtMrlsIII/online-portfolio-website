@@ -15,7 +15,7 @@ Declare:
 
 ## Continuity skills
 
-- **Project continuity:** always start from the latest complete ZIP and preserve prior decisions.
+- **Project continuity:** always start from the latest committed state on `main` and preserve prior decisions.
 - **Canonical discipline:** `product-law.md` governs principles; `product-vision.md` governs product direction; `plan.md` governs sequence; `design-tokens.md` and CSS `:root` govern reusable visual values; `validation.md` records evidence; `endorsement.md` governs continuation.
 - **Code structure:** maintain clear separation of semantic DOM, visual scene, data/content, and progressive enhancement layers.
 - **Frontend ProMax:** responsive composition, interaction quality, motion choreography, component consistency, typography hierarchy, visual hierarchy, and resilient browser behavior.
@@ -28,7 +28,7 @@ Declare:
 
 ## Phase handoff
 
-Every execution returns the **complete updated portfolio ZIP**. Partial patches are not the canonical handoff.
+The Git repository (`main`) is the canonical handoff. Commit the complete phase result and update `validation.md` + `endorsement.md`.
 
 ## Definition of continuity
 

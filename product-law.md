@@ -12,6 +12,6 @@ This is the highest-level rule set for Roberto Cabalse Morales III's portfolio. 
 8. Content remains sovereign. The interface serves Roberto, not the other way around.
 9. No unverified completion. A written implementation is not a completed phase without validation and endorsement.
 10. No silent regressions. Material changes to an endorsed phase trigger re-validation.
-11. Self-contained project. The complete portfolio must remain reproducible from the canonical ZIP snapshot.
+11. Self-contained project. The complete portfolio must remain reproducible from the repository.
 12. Every phase leaves the product healthier, clearer, and more maintainable.
 13. Rule of restraint. When two solutions achieve the same goal, prefer the simpler one unless added complexity creates a measurable experience benefit.

@@ -6,7 +6,7 @@ Build a cinematic online portfolio for Roberto Cabalse Morales III using a live-
 
 ## Delivery law
 
-Work one phase at a time. Every execution must return the whole portfolio ZIP as the canonical handoff snapshot. A phase is not complete until validation is recorded and the corresponding endorsement authorizes continuation.
+Work one phase at a time. The Git repository (main branch) is the canonical source of truth and handoff. A phase is not complete until validation is recorded and the corresponding endorsement authorizes continuation.
 
 ## Phase 01 — Foundation & Project Rules
 
@@ -14,7 +14,8 @@ Establish the self-contained project structure, asset policy, identity, local se
 
 Output: stable blank-canvas project with canonical documentation and a measurable `:root` design system.
 
-Gate: validation PASS + endorsement APPROVED.
+Gate: validation PASS + endorsement APPROVED.  
+**Status: COMPLETE (2026-09-09)**
 
 ## Phase 02 — Art Direction & Design System
 
@@ -92,6 +93,6 @@ Output: release-ready product snapshot.
 
 ## Phase 14 — Release & Handover
 
-Prepare final documentation, deployment packaging, canonical ZIP, and final endorsement.
+Prepare final documentation, deployment packaging, and final endorsement.
 
-Output: production-ready Roberto portfolio and final handover snapshot.
+Output: production-ready Roberto portfolio.

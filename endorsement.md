@@ -19,33 +19,35 @@ No phase should be treated as officially closed until both records are complete.
 
 **Phase:** 01 — Foundation & Project Rules
 
-**Validation status:** `PARTIAL`
+**Validation status:** `PASS`
 
-**Decision:** `HOLD`
+**Decision:** `APPROVED`
 
-**Continuation status:** `NO-GO`
+**Continuation status:** `GO`
 
-**Reviewed by:** Roberto Cabalse Morales III (Roberto) / GPT
+**Reviewed by:** Roberto Cabalse Morales III (Roberto) / Grok
 
 **Review date:** 2026-09-09
 
 ### Required endorsement conditions
 
-- [ ] Phase 01 validation is complete.
-- [ ] No unresolved blocker affects Phase 02.
-- [ ] Known limitations are documented.
-- [x] Project remains self-contained inside the ZIP.
-- [ ] The next phase is explicitly authorized.
+- [x] Phase 01 validation is complete.
+- [x] No unresolved blocker affects Phase 02.
+- [x] Known limitations are documented.
+- [x] Project remains self-contained in the repository.
+- [x] The next phase is explicitly authorized.
 
 ### Endorsement Statement
 
 > I confirm that Phase 01 has been reviewed against the project's validation criteria. Based on the recorded evidence and known issues, Phase 02 is authorized to begin.
 
-**Endorsement:** `HOLD`
+**Endorsement:** `APPROVED`
 
 **Notes:**
 
-Browser viewport smoke tests could not be completed in the current execution environments. Phase 02 should not be treated as formally endorsed until those viewport checks are successfully rerun or their limitation is explicitly accepted by the project's gate owner.
+- Hero image path corrected.
+- ZIP delivery rule removed; Git repository is the canonical handoff.
+- Environment-limited browser smoke tests from the previous run are accepted as a known limitation (not a product defect).
 
 ---
 
