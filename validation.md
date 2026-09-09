@@ -1,52 +1,48 @@
 # Validation Protocol
 
-**Discipline:** ORUCAVEAM
+**Discipline:** ORUCAVEAM  
+**Branch policy:** Option B — test branch first, merge to main after verification
 
-## Phase 01 — Foundation
-**Result:** PASS
+## Rule
+Implementation on `test/*` is not complete until verification logs prove behavior.  
+**If the verification log does not change when change is expected → FAIL.**
 
 ---
 
-## Slice — Settings / Nav contrast / Scale (defect fix)
+## Slice: scale authority + mobile video parallax
+**Branch:** `test/scale-video-verify`  
 **Date:** 2026-09-09
 
-### User-reported defects
-1. Settings button unresponsive
-2. Navigation nearly fading (low contrast)
-3. Scale slider nowhere to be found
+### Objectives
+1. Single scale authority (no overall vs mobile competition)
+2. Mobile video less zoomed + smooth scroll parallax on background
+3. Verification logging contract
 
-### Root causes found
-1. Settings used `hidden` + fragile positioning; `html { zoom }` broke fixed panels
-2. Nav links used `--muted` (#94a3b8) over bright video
-3. Slider lives inside Settings — unreachable when panel fails
+### Expected log events (must appear)
+| Action | Expected log event |
+|--------|--------------------|
+| Page load | `boot` |
+| Open settings | `settings` / `open` |
+| Move scale slider | `scale` with `touched: true` |
+| Resize without user scale | `resize` with `appliedDefault` OR ignored if touched |
+| Open mobile nav | `nav` / `open` |
 
-### Fixes applied
-| Fix | Status |
-|-----|--------|
-| Settings uses class `.is-open` + solid fixed panel outside app-shell | DONE |
-| Removed `html { zoom }` — scale via `.app-shell { transform: scale() }` | DONE |
-| Nav links forced to high contrast `#e2e8f0` / `#fff` + text-shadow | DONE |
-| Settings panel darker opaque glass so controls are visible | DONE |
-| Scale range input styled and visible when panel open | DONE |
-| Click handlers use preventDefault/stopPropagation | DONE |
+### How to verify in browser
+1. Open DevTools Console
+2. Hard-refresh the **test branch** preview or local file
+3. Note `window.__PORTFOLIO_VERIFY__.logLength()`
+4. Click ⚙ → length must increase (`settings`)
+5. Drag scale → length must increase (`scale`, `touched: true`)
+6. If length is unchanged after steps 4–5 → **FAIL**
 
-### Static verification
+### Status
 | Check | Status |
 |-------|--------|
-| `#settingsPanel` outside `.app-shell` | PASS |
-| `.settings-panel.is-open { display: grid }` | PASS |
-| `.nav__link { color: #e2e8f0 }` | PASS |
-| `#scaleRange` present | PASS |
-| No `html { zoom }` | PASS |
+| Code on `test/scale-video-verify` | PENDING user browser |
+| Log grows on settings open | PENDING |
+| Log grows on scale drag | PENDING |
+| Mobile initial scale 55% | PENDING |
+| Video parallax on scroll | PENDING |
+| Merged to main | BLOCKED until PASS |
 
-### Browser confirmation (user)
-| Check | Status |
-|-------|--------|
-| ⚙ opens Settings panel | PENDING |
-| Scale slider visible and works 50–100% | PENDING |
-| Nav links clearly readable | PENDING |
-| Mobile hamburger works | PENDING |
-
-**Slice result:** PARTIAL — code fix complete; awaiting user hard-refresh confirmation
-
-**Action for user:** Hard refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`) then test ⚙ and nav.
+**Slice result:** PENDING (test branch only)

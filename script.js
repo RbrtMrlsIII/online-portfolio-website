@@ -1,6 +1,20 @@
 (function () {
   'use strict';
 
+  var LOG = [];
+  function log(event, detail) {
+    var entry = {
+      t: new Date().toISOString(),
+      event: event,
+      detail: detail || null
+    };
+    LOG.push(entry);
+    try {
+      window.__PORTFOLIO_VERIFY_LOG__ = LOG.slice();
+      console.info('[verify]', event, detail || '');
+    } catch (e) {}
+  }
+
   var copy = {
     en: {
       available: 'AVAILABLE FOR SELECT PROJECTS',
@@ -84,7 +98,14 @@
     }
   };
 
-  var state = { lang: 'en', motion: true, theme: 'dark', scale: 100 };
+  /* Single scale authority — no competing mobile/desktop auto loops */
+  var state = {
+    lang: 'en',
+    motion: true,
+    theme: 'dark',
+    scale: 100,
+    scaleTouched: false
+  };
 
   function $(sel) { return document.querySelector(sel); }
   function $$(sel) { return document.querySelectorAll(sel); }
@@ -93,7 +114,7 @@
     return window.matchMedia('(max-width: 980px)').matches;
   }
 
-  function defaultScale() {
+  function initialScale() {
     return isMobile() ? 55 : 100;
   }
 
@@ -107,18 +128,23 @@
     $$('.lang-option').forEach(function (btn) {
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === state.lang);
     });
+    log('language', state.lang);
   }
 
-  function applyScale(value) {
+  function applyScale(value, fromUser) {
+    if (fromUser) state.scaleTouched = true;
     state.scale = Number(value);
-    if (isNaN(state.scale)) state.scale = defaultScale();
+    if (isNaN(state.scale)) state.scale = initialScale();
     state.scale = Math.max(50, Math.min(100, state.scale));
     var ratio = state.scale / 100;
     document.documentElement.style.setProperty('--ui-scale', String(ratio));
     var scaleValue = $('#scaleValue');
     var scaleRange = $('#scaleRange');
     if (scaleValue) scaleValue.textContent = state.scale + '%';
-    if (scaleRange) scaleRange.value = String(state.scale);
+    if (scaleRange && String(scaleRange.value) !== String(state.scale)) {
+      scaleRange.value = String(state.scale);
+    }
+    log('scale', { value: state.scale, touched: state.scaleTouched, mobile: isMobile() });
   }
 
   function applyTheme(theme) {
@@ -127,6 +153,7 @@
     $$('.theme-option').forEach(function (btn) {
       btn.classList.toggle('is-active', btn.getAttribute('data-theme') === theme);
     });
+    log('theme', theme);
   }
 
   function applyMotion(on) {
@@ -134,9 +161,10 @@
     document.body.classList.toggle('motion-off', !on);
     var btn = $('#motionToggle');
     if (btn) btn.textContent = on ? 'Motion on' : 'Motion off';
+    log('motion', on);
   }
 
-  /* ---- Settings (robust) ---- */
+  /* Settings */
   var settingsPanel = $('#settingsPanel');
   var settingsToggle = $('#settingsToggle');
   var settingsClose = $('#settingsClose');
@@ -148,6 +176,7 @@
     settingsPanel.classList.add('is-open');
     settingsPanel.setAttribute('aria-hidden', 'false');
     if (settingsToggle) settingsToggle.setAttribute('aria-expanded', 'true');
+    log('settings', 'open');
   }
 
   function closeSettings() {
@@ -156,18 +185,15 @@
     settingsPanel.classList.remove('is-open');
     settingsPanel.setAttribute('aria-hidden', 'true');
     if (settingsToggle) settingsToggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function toggleSettings() {
-    if (settingsOpen) closeSettings();
-    else openSettings();
+    log('settings', 'close');
   }
 
   if (settingsToggle) {
     settingsToggle.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      toggleSettings();
+      if (settingsOpen) closeSettings();
+      else openSettings();
     });
   }
 
@@ -183,7 +209,6 @@
     if (e.key === 'Escape') closeSettings();
   });
 
-  // Close on outside click, but only after open animation frame
   document.addEventListener('click', function (e) {
     if (!settingsOpen) return;
     if (settingsPanel && settingsPanel.contains(e.target)) return;
@@ -194,7 +219,7 @@
   var scaleRange = $('#scaleRange');
   if (scaleRange) {
     scaleRange.addEventListener('input', function (e) {
-      applyScale(e.target.value);
+      applyScale(e.target.value, true);
     });
   }
 
@@ -219,7 +244,7 @@
     });
   }
 
-  /* ---- Mobile nav ---- */
+  /* Mobile nav */
   var nav = $('#primaryNav');
   var navToggle = $('#navToggle');
 
@@ -230,6 +255,7 @@
       var open = nav.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', String(open));
       navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      log('nav', open ? 'open' : 'close');
     });
   }
 
@@ -260,7 +286,22 @@
   }
 
   window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
+
+  /* Smooth background parallax (scroll down feels natural, less “zoomed stick”) */
+  var sceneVideo = $('.scene__video');
+  var parallaxRaf = null;
+  function updateParallax() {
+    parallaxRaf = null;
+    if (!sceneVideo || !state.motion) return;
+    var y = window.scrollY;
+    // Slow drift downward + slight lift of crop so mobile feels less zoomed-stuck
+    var shift = Math.min(y * 0.12, 180);
+    sceneVideo.style.transform = 'translate3d(0, ' + shift + 'px, 0) scale(1.08)';
+  }
+  window.addEventListener('scroll', function () {
+    if (parallaxRaf) return;
+    parallaxRaf = requestAnimationFrame(updateParallax);
+  }, { passive: true });
 
   /* Tilt */
   var tilt = $('[data-tilt]');
@@ -281,17 +322,34 @@
     });
   }
 
-  /* Init */
+  /* Init — one scale decision only */
   applyLanguage();
-  applyScale(defaultScale());
+  applyScale(initialScale(), false);
   applyTheme('dark');
   applyMotion(true);
+  updateActiveNav();
+  updateParallax();
+  log('boot', { mobile: isMobile(), scale: state.scale });
 
-  // Re-apply mobile default if viewport changes and user hasn't touched scale yet
+  // Resize: only apply initial default if user never touched the slider
   window.addEventListener('resize', function () {
-    // only auto-set if still at a default endpoint
-    if (state.scale === 100 || state.scale === 55) {
-      applyScale(defaultScale());
+    if (state.scaleTouched) {
+      log('resize', { ignored: true, reason: 'user-controlled-scale' });
+      return;
     }
+    applyScale(initialScale(), false);
+    log('resize', { appliedDefault: state.scale });
   });
+
+  /* Verification helper: FAIL if log never grows after interaction expectation */
+  window.__PORTFOLIO_VERIFY__ = {
+    getLog: function () { return LOG.slice(); },
+    logLength: function () { return LOG.length; },
+    assertLogGrew: function (before) {
+      var after = LOG.length;
+      var ok = after > before;
+      log('assertLogGrew', { before: before, after: after, pass: ok });
+      return ok;
+    }
+  };
 })();
