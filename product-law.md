@@ -16,13 +16,15 @@ This is the highest-level rule set for Roberto Cabalse Morales III's portfolio. 
 12. Every phase leaves the product healthier, clearer, and more maintainable.
 13. Rule of restraint. When two solutions achieve the same goal, prefer the simpler one unless added complexity creates a measurable experience benefit.
 
-## Settings & User Controls (added 2026-09-09)
+## Settings & User Controls
 
-14. **Settings are first-class.** Core experience controls live in a dedicated Settings panel accessible from the header.
-15. **Scale control.** Users can adjust the overall interface scale from 50% to 100% via a continuous control (slider / drag). The scale must apply to the whole experience and remain usable at every step.
-16. **Language control.** Language switching (EN / FIL) is available both in the header and inside Settings.
-17. **Theme control.** The product supports theme switching:
-    - **Dark** = Glassmorphism (current default)
-    - **Light** = Skeuomorphism (planned / soon)
-    Theme choice must be remembered for the session and must not break layout or accessibility.
-18. **Document continuity.** Whenever a new product idea is introduced by the user, it must be recorded in Product Law (or the appropriate governance file) and implemented consistently with existing rules.
+14. Settings are first-class. Core experience controls live in a dedicated Settings panel accessible from the header.
+15. Scale control. Users can adjust the overall interface scale from 50% to 100% via a continuous control. The scale must apply to the whole experience.
+16. Language control. Language switching (EN / FIL) is available inside Settings.
+17. Theme control. Dark = Glassmorphism (current). Light = Skeuomorphism (planned).
+18. Document continuity. Whenever a new product idea is introduced by the user, it must be recorded in Product Law (or the appropriate governance file) and implemented consistently.
+
+## Execution discipline
+
+19. **ORUCAVEAM is the single execution discipline** for this project (adapted from TeamAi).
+20. No implementation may be treated as complete without Objective → Restrictions → User Authority → Canonical Authority → Action → Verification → Efficiency → Audit → Minimal resource use, plus recorded evidence.
