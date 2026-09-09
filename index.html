@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- FULL-SITE FIXED SCENE (video background scopes entire page) -->
+  <!-- FULL-SITE FIXED SCENE -->
   <div class="scene" aria-hidden="true">
     <video
       class="scene__video"
@@ -17,7 +17,7 @@
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="auto"
       data-background-video
     >
       <source src="assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4" type="video/mp4" />
@@ -31,19 +31,19 @@
   </div>
 
   <div class="app-shell">
-    <!-- HEADER / TOPBAR -->
+    <!-- HEADER -->
     <header class="topbar glass-panel">
       <a class="brand" href="#top" aria-label="Roberto home">
         <span class="brand__mark">R</span>
         <span class="brand__text">ROBERTO</span>
       </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="nav__link" href="#about">About</a>
-        <a class="nav__link" href="#services">Services</a>
-        <a class="nav__link" href="#projects">Projects</a>
-        <a class="nav__link" href="#education">Education</a>
-        <a class="nav__link" href="#contact">Contact</a>
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+        <a class="nav__link" href="#about" data-nav="about">About</a>
+        <a class="nav__link" href="#services" data-nav="services">Services</a>
+        <a class="nav__link" href="#projects" data-nav="projects">Projects</a>
+        <a class="nav__link" href="#education" data-nav="education">Education</a>
+        <a class="nav__link" href="#contact" data-nav="contact">Contact</a>
       </nav>
 
       <div class="topbar__actions">
@@ -55,11 +55,16 @@
         <button class="button button--ghost button--icon" id="motionToggle" type="button" aria-label="Toggle motion" title="Toggle motion">
           <span class="pulse-dot"></span>
         </button>
+        <button class="button button--ghost button--icon nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
       </div>
     </header>
 
     <main id="top">
-      <!-- ==================== HERO ==================== -->
+      <!-- HERO -->
       <section class="hero" id="hero">
         <div class="hero__copy glass-panel glass-panel--soft reveal">
           <div class="eyebrow">
@@ -98,10 +103,7 @@
             </div>
             <div class="portrait-wrap">
               <div class="portrait-glow"></div>
-              <img
-                src="assets/IMG_20250712_095315.jpg"
-                alt="Portrait of Roberto Cabalse Morales III"
-              />
+              <img src="assets/IMG_20250712_095315.jpg" alt="Portrait of Roberto Cabalse Morales III" />
             </div>
             <div class="hero-card__footer">
               <div><small>IDENTITY</small><strong>ROBERTO M.</strong></div>
@@ -127,7 +129,7 @@
         </div>
       </section>
 
-      <!-- ==================== ABOUT ME ==================== -->
+      <!-- ABOUT -->
       <section class="section" id="about">
         <div class="section__heading reveal">
           <div class="section__label">
@@ -160,7 +162,7 @@
         </div>
       </section>
 
-      <!-- ==================== SERVICES ==================== -->
+      <!-- SERVICES -->
       <section class="section" id="services">
         <div class="section__heading reveal">
           <div class="section__label">
@@ -168,9 +170,7 @@
             <span class="section-kicker" data-i18n="servicesKicker">SERVICES</span>
           </div>
           <h2 data-i18n="servicesTitle">What I can help with.</h2>
-          <p data-i18n="servicesText">
-            Selected capabilities for product teams, startups, and experimental projects.
-          </p>
+          <p data-i18n="servicesText">Selected capabilities for product teams, startups, and experimental projects.</p>
         </div>
 
         <div class="services-grid">
@@ -181,7 +181,6 @@
               <p data-i18n="svc1Text">Clean, scalable interface systems with strong hierarchy, responsive behavior, and thoughtful interaction details.</p>
             </div>
           </article>
-
           <article class="card glass-panel reveal reveal--delay">
             <div class="card__header"><span>02</span><span>EXPERIENCE</span></div>
             <div class="card__body">
@@ -189,7 +188,6 @@
               <p data-i18n="svc2Text">Motion systems, microinteractions, and cinematic UI that feel intentional rather than decorative.</p>
             </div>
           </article>
-
           <article class="card glass-panel reveal reveal--delay-2">
             <div class="card__header"><span>03</span><span>SPATIAL</span></div>
             <div class="card__body">
@@ -197,7 +195,6 @@
               <p data-i18n="svc3Text">Lightweight 3D / WebGL layers used as progressive enhancement on top of solid DOM experiences.</p>
             </div>
           </article>
-
           <article class="card glass-panel reveal">
             <div class="card__header"><span>04</span><span>PROTOTYPING</span></div>
             <div class="card__body">
@@ -208,7 +205,7 @@
         </div>
       </section>
 
-      <!-- ==================== PROJECTS ==================== -->
+      <!-- PROJECTS -->
       <section class="section" id="projects">
         <div class="section__heading reveal">
           <div class="section__label">
@@ -216,50 +213,31 @@
             <span class="section-kicker" data-i18n="projectsKicker">PROJECTS</span>
           </div>
           <h2 data-i18n="projectsTitle">Selected work & experiments.</h2>
-          <p data-i18n="projectsText">
-            A small set of high-signal projects. More case studies can be added here later.
-          </p>
+          <p data-i18n="projectsText">A small set of high-signal projects. More case studies can be added here later.</p>
         </div>
 
         <div class="project-grid">
           <article class="card project-card glass-panel reveal" data-project="01">
-            <div class="card__header project-card__top">
-              <span>01</span><span>CONCEPT</span>
-            </div>
-            <div class="project-card__art project-card__art--one">
-              <div class="project-sphere"></div>
-              <div class="scanline"></div>
-            </div>
+            <div class="card__header project-card__top"><span>01</span><span>CONCEPT</span></div>
+            <div class="project-card__art project-card__art--one"><div class="project-sphere"></div><div class="scanline"></div></div>
             <div class="card__body project-card__body">
               <h3>Immersive Home Finder</h3>
               <p>Spatial discovery interface using WebGL surfaces, maps, and responsive booking states.</p>
               <span class="project-link">VIEW CASE <b>↗</b></span>
             </div>
           </article>
-
           <article class="card project-card glass-panel reveal reveal--delay" data-project="02">
-            <div class="card__header project-card__top">
-              <span>02</span><span>EXPERIMENT</span>
-            </div>
-            <div class="project-card__art project-card__art--two">
-              <div class="rings"></div>
-              <div class="signal"></div>
-            </div>
+            <div class="card__header project-card__top"><span>02</span><span>EXPERIMENT</span></div>
+            <div class="project-card__art project-card__art--two"><div class="rings"></div><div class="signal"></div></div>
             <div class="card__body project-card__body">
               <h3>Signal Interface</h3>
               <p>Motion-first dashboard studies with layered controls, glass surfaces, and ambient data.</p>
               <span class="project-link">VIEW CASE <b>↗</b></span>
             </div>
           </article>
-
           <article class="card project-card glass-panel reveal reveal--delay-2" data-project="03">
-            <div class="card__header project-card__top">
-              <span>03</span><span>PLAYGROUND</span>
-            </div>
-            <div class="project-card__art project-card__art--three">
-              <div class="cube"></div>
-              <div class="orbit"></div>
-            </div>
+            <div class="card__header project-card__top"><span>03</span><span>PLAYGROUND</span></div>
+            <div class="project-card__art project-card__art--three"><div class="cube"></div><div class="orbit"></div></div>
             <div class="card__body project-card__body">
               <h3>Mesh / Motion Lab</h3>
               <p>Small WebGL prototypes exploring depth, shaders, particles, and tactile transitions.</p>
@@ -269,7 +247,7 @@
         </div>
       </section>
 
-      <!-- ==================== EDUCATION ==================== -->
+      <!-- EDUCATION -->
       <section class="section" id="education">
         <div class="section__heading reveal">
           <div class="section__label">
@@ -277,29 +255,20 @@
             <span class="section-kicker" data-i18n="eduKicker">EDUCATION</span>
           </div>
           <h2 data-i18n="eduTitle">Learning path.</h2>
-          <p data-i18n="eduText">
-            Formal studies and continuous self-directed learning. Details can be expanded later.
-          </p>
+          <p data-i18n="eduText">Formal studies and continuous self-directed learning. Details can be expanded later.</p>
         </div>
 
         <div class="education-list">
           <article class="card glass-panel reveal">
             <div class="card__body">
-              <div class="edu-meta">
-                <span class="section-index">01</span>
-                <span class="edu-year">—</span>
-              </div>
+              <div class="edu-meta"><span class="section-index">01</span><span class="edu-year">—</span></div>
               <h3 data-i18n="edu1Title">Education item placeholder</h3>
               <p data-i18n="edu1Text">Institution / program details will go here.</p>
             </div>
           </article>
-
           <article class="card glass-panel reveal reveal--delay">
             <div class="card__body">
-              <div class="edu-meta">
-                <span class="section-index">02</span>
-                <span class="edu-year">—</span>
-              </div>
+              <div class="edu-meta"><span class="section-index">02</span><span class="edu-year">—</span></div>
               <h3 data-i18n="edu2Title">Continuous learning</h3>
               <p data-i18n="edu2Text">Self-directed studies in interface design, creative coding, and emerging tools.</p>
             </div>
@@ -307,7 +276,7 @@
         </div>
       </section>
 
-      <!-- ==================== CONTACT ==================== -->
+      <!-- CONTACT -->
       <section class="section contact-section" id="contact">
         <div class="contact-panel glass-panel reveal">
           <div class="section__label">
@@ -315,16 +284,14 @@
             <span class="section-kicker" data-i18n="contactKicker">CONTACT</span>
           </div>
           <h2 data-i18n="contactTitle">Let's build the next screen.</h2>
-          <p data-i18n="contactText">
-            For collaborations, experiments, or a serious interface that needs more personality.
-          </p>
+          <p data-i18n="contactText">For collaborations, experiments, or a serious interface that needs more personality.</p>
           <a class="button button--primary button--large" href="mailto:hello@robertomorales.dev">
             <span>hello@robertomorales.dev</span><span>↗</span>
           </a>
         </div>
       </section>
 
-      <!-- ==================== CREDITS ==================== -->
+      <!-- CREDITS -->
       <section class="section" id="credits">
         <div class="section__heading reveal">
           <div class="section__label">
@@ -333,7 +300,6 @@
           </div>
           <h2>Attribution</h2>
         </div>
-
         <div class="credits-panel glass-panel reveal">
           <p>
             Background video:
@@ -343,14 +309,11 @@
             by <strong>Mixkit</strong>.
             Used under the Mixkit license for non-commercial purposes with attribution.
           </p>
-          <p class="credits-note">
-            Portrait and all other design & code by Roberto Cabalse Morales III.
-          </p>
+          <p class="credits-note">Portrait and all other design & code by Roberto Cabalse Morales III.</p>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <span>© 2026 Roberto Cabalse Morales III</span>
       <span>BUILT FOR THE WEB · WITH CURIOSITY</span>
