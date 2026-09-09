@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- FULL-SITE FIXED SCENE -->
   <div class="scene" aria-hidden="true">
     <video class="scene__video" autoplay muted loop playsinline preload="auto" data-background-video>
       <source src="assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4" type="video/mp4" />
@@ -22,8 +21,8 @@
     <div class="scene__grain"></div>
   </div>
 
-  <!-- SETTINGS PANEL (outside app-shell so fixed positioning is reliable) -->
-  <div class="settings-panel glass-panel glass-panel--strong" id="settingsPanel" role="dialog" aria-label="Settings" aria-hidden="true">
+  <!-- Settings outside scaled shell -->
+  <div class="settings-panel" id="settingsPanel" role="dialog" aria-label="Settings" aria-hidden="true">
     <div class="settings-panel__head">
       <strong>Settings</strong>
       <button type="button" class="button button--ghost button--icon" id="settingsClose" aria-label="Close settings">✕</button>
@@ -33,7 +32,7 @@
       <label class="settings-label" for="scaleRange">Interface scale</label>
       <div class="scale-control">
         <span class="scale-value" id="scaleValue">100%</span>
-        <input type="range" id="scaleRange" min="50" max="100" value="100" step="1" aria-valuemin="50" aria-valuemax="100" aria-valuenow="100" />
+        <input type="range" id="scaleRange" min="50" max="100" value="100" step="1" />
         <div class="scale-ends"><span>50%</span><span>100%</span></div>
       </div>
     </div>
@@ -57,17 +56,19 @@
     <div class="settings-group">
       <span class="settings-label">Motion</span>
       <div class="settings-row">
-        <button type="button" class="button button--ghost button--compact" id="motionToggle" aria-pressed="false">Motion on</button>
+        <button type="button" class="button button--ghost button--compact" id="motionToggle">Motion on</button>
       </div>
     </div>
   </div>
 
   <div class="app-shell" id="appShell">
-    <!-- HEADER -->
     <header class="topbar glass-panel">
       <a class="brand" href="#top" aria-label="Roberto home">
         <span class="brand__mark">R</span>
-        <span class="brand__text">ROBERTO</span>
+        <span class="brand__text">
+          <span class="brand__name">Roberto</span>
+          <span class="brand__sub">Morales III</span>
+        </span>
       </a>
 
       <nav class="nav" id="primaryNav" aria-label="Primary navigation">
@@ -79,9 +80,7 @@
       </nav>
 
       <div class="topbar__actions">
-        <button class="button button--ghost button--icon" id="settingsToggle" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settingsPanel" title="Settings">
-          <span class="settings-icon" aria-hidden="true">⚙</span>
-        </button>
+        <button class="button button--ghost button--icon" id="settingsToggle" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settingsPanel" title="Settings">⚙</button>
         <button class="button button--ghost button--icon nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
           <span class="nav-toggle__bar"></span>
           <span class="nav-toggle__bar"></span>
