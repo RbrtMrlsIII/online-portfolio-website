@@ -1,1 +1,106 @@
-PLACEHOLDER
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#070b12"/>
+<title>Roberto Morales III · Portfolio</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="scene" aria-hidden="true">
+<video class="scene__video" autoplay muted loop playsinline preload="auto"><source src="assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4" type="video/mp4"/></video>
+<div class="scene__video-shade"></div><div class="scene__wash"></div>
+<div class="scene__orb scene__orb--one"></div><div class="scene__orb scene__orb--two"></div>
+<div class="scene__grid"></div><div class="scene__grain"></div>
+</div>
+<div class="settings-panel" id="settingsPanel" role="dialog" aria-label="Settings" aria-hidden="true">
+<div class="settings-panel__head"><strong>Settings</strong>
+<button type="button" class="button button--ghost button--icon" id="settingsClose" aria-label="Close settings">✕</button></div>
+<div class="settings-group"><label class="settings-label" for="scaleRange">Interface scale</label>
+<div class="scale-control"><span class="scale-value" id="scaleValue">100%</span>
+<input type="range" id="scaleRange" min="50" max="100" value="100" step="1"/>
+<div class="scale-ends"><span>50%</span><span>100%</span></div></div></div>
+<div class="settings-group"><span class="settings-label">Language</span>
+<div class="settings-row">
+<button type="button" class="button button--ghost button--compact lang-option is-active" data-lang="en">EN</button>
+<button type="button" class="button button--ghost button--compact lang-option" data-lang="fil">FIL</button></div></div>
+<div class="settings-group"><span class="settings-label">Theme</span>
+<div class="settings-row">
+<button type="button" class="button button--ghost button--compact theme-option is-active" data-theme="dark">Dark · Glass</button>
+<button type="button" class="button button--ghost button--compact theme-option" data-theme="light" disabled>Light · Skeuo (soon)</button></div></div>
+<div class="settings-group"><span class="settings-label">Motion</span>
+<div class="settings-row"><button type="button" class="button button--ghost button--compact" id="motionToggle">Motion on</button></div></div>
+</div>
+<div class="app-shell" id="appShell">
+<header class="topbar glass-panel" id="siteHeader">
+<a class="brand" href="#top" aria-label="Roberto home">
+<span class="brand__mark" id="brandMark">R</span>
+<span class="brand__avatar" id="brandAvatar" aria-hidden="true"><img src="assets/IMG_20250712_095315.jpg" alt=""/></span>
+<span class="brand__text"><span class="brand__name" id="brandName">Roberto Morales III</span><span class="brand__sub" id="brandSub">Portfolio</span></span>
+</a>
+<nav class="nav nav--full" id="primaryNav" aria-label="Primary navigation">
+<a class="nav__link" href="#about" data-nav="about">About</a>
+<a class="nav__link" href="#services" data-nav="services">Services</a>
+<a class="nav__link" href="#projects" data-nav="projects">Projects</a>
+<a class="nav__link" href="#education" data-nav="education">Education</a>
+<a class="nav__link" href="#contact" data-nav="contact">Contact</a>
+</nav>
+<div class="topbar__actions">
+<div class="nav-dropdown" id="navDropdown">
+<button class="button button--ghost button--compact" id="navDropdownToggle" type="button" aria-expanded="false" aria-controls="navDropdownMenu">Menu</button>
+<div class="nav-dropdown__menu glass-panel glass-panel--strong" id="navDropdownMenu" hidden>
+<a class="nav__link" href="#about">About</a><a class="nav__link" href="#services">Services</a>
+<a class="nav__link" href="#projects">Projects</a><a class="nav__link" href="#education">Education</a>
+<a class="nav__link" href="#contact">Contact</a>
+</div></div>
+<button class="button button--ghost button--icon" id="settingsToggle" type="button" aria-label="Open settings" aria-expanded="false">⚙</button>
+<button class="button button--ghost button--icon nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
+<span class="nav-toggle__bar"></span><span class="nav-toggle__bar"></span><span class="nav-toggle__bar"></span>
+</button></div>
+</header>
+<main id="top">
+<section class="hero" id="hero">
+<div class="hero__copy glass-panel glass-panel--soft reveal">
+<div class="eyebrow"><span class="status-dot"></span><span data-i18n="available">AVAILABLE FOR SELECT PROJECTS</span></div>
+<h1 class="hero__name"><span class="hero__name-main">Roberto</span><span class="hero__name-full">Cabalse Morales III</span></h1>
+<p class="hero__role" aria-live="polite"><span class="hero__role-label">I am a</span> <span class="hero__role-typed" id="typedRole">Frontend Developer</span><span class="hero__cursor">|</span></p>
+<p class="hero__lede" data-i18n="lede">I build expressive digital experiences where motion, interface, story, and technology meet.</p>
+<p class="hero__support" data-i18n="support">Open to collaborations, experiments, and products that need craft plus curiosity.</p>
+<div class="hero__ctas">
+<a class="button button--primary" href="#projects"><span data-i18n="explore">Explore work</span><span>↗</span></a>
+<a class="button button--ghost" href="#contact"><span data-i18n="contactMe">Start a conversation</span><span>○</span></a>
+</div>
+<div class="social" id="socialLinks" aria-label="Social links">
+<a class="social__link" data-social="discord" href="#" title="Discord" aria-label="Discord"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.89 3l-.2.36c1.8.5 2.78 1.22 2.78 1.22A13.4 13.4 0 0 0 12 4.1a13.4 13.4 0 0 0-6.47.48s1.03-.78 2.94-1.28L8.22 3A19.9 19.9 0 0 0 3.7 4.4C1.2 8.2.4 11.9.7 15.55A19.7 19.7 0 0 0 6.5 18.3l.5-.7a12.7 12.7 0 0 1-1.9-1.03l.45-.35c3.55 1.65 7.4 1.65 10.9 0l.45.35c-.6.4-1.24.75-1.9 1.04l.5.7a19.5 19.5 0 0 0 5.8-2.74c.5-4.05-.7-7.7-2.98-11.2ZM8.35 13.5c-.85 0-1.54-.8-1.54-1.77s.68-1.77 1.54-1.77 1.56.8 1.54 1.77c0 .97-.68 1.77-1.54 1.77Zm7.3 0c-.85 0-1.54-.8-1.54-1.77s.68-1.77 1.54-1.77 1.55.8 1.54 1.77c0 .97-.68 1.77-1.54 1.77Z"/></svg></span><span class="social__name">Discord</span></a>
+<a class="social__link" data-social="facebook" href="#" title="Facebook" aria-label="Facebook"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 8.5h2.5V5H14c-2.2 0-4 1.8-4 4v1.5H7.5V14H10v8h3.5v-8H16l.5-3.5H13.5V9c0-.3.2-.5.5-.5Z"/></svg></span><span class="social__name">Facebook</span></a>
+<a class="social__link" data-social="linkedin" href="#" title="LinkedIn" aria-label="LinkedIn"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.5 9.5H3.7V20h2.8V9.5ZM5.1 4A1.75 1.75 0 1 0 5.1 7.5 1.75 1.75 0 0 0 5.1 4ZM20.3 20h-2.8v-5.4c0-1.5-.5-2.5-1.8-2.5-1 0-1.5.7-1.8 1.3-.1.2-.1.5-.1.8V20H11V9.5h2.7v1.4c.5-.8 1.5-1.9 3.5-1.9 2.5 0 4.1 1.6 4.1 5.1V20Z"/></svg></span><span class="social__name">LinkedIn</span></a>
+<a class="social__link" data-social="youtube" href="#" title="YouTube" aria-label="YouTube"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23 12.2s0-3.2-.4-4.7c-.2-.9-.9-1.6-1.8-1.8C19.3 5.3 12 5.3 12 5.3s-7.3 0-8.8.4c-.9.2-1.6.9-1.8 1.8C1 9 1 12.2 1 12.2s0 3.2.4 4.7c.2.9.9 1.6 1.8 1.8 1.5.4 8.8.4 8.8.4s7.3 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.5.4-4.7.4-4.7ZM9.8 15.5v-6.6l6.2 3.3-6.2 3.3Z"/></svg></span><span class="social__name">YouTube</span></a>
+<a class="social__link" data-social="viber" href="#" title="Viber" aria-label="Viber"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.7 2 2.3 5.9 2.3 10.8c0 2.6 1.2 4.9 3.1 6.5l-.7 3.4 3.6-1.1c1.1.3 2.3.5 3.7.5 5.3 0 9.7-3.9 9.7-8.8S17.3 2 12 2Zm5.2 10.6c-.2.6-1.2 1.1-1.6 1.1-.3 0-.6.5-2.1-.4-1.5-1-2.5-2.3-2.7-2.5-.2-.3-.9-1.2 0-1.6.2-.1.5-.3.7-.5.2-.2.2-.3.3-.5 0-.2 0-.4-.2-.6l-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5 2.1.8 2.5.7 3 .6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1 0-.3-.1-.6-.2Z"/></svg></span><span class="social__name">Viber</span></a>
+<a class="social__link" data-social="email" href="mailto:hello@robertomorales.dev" title="Email" aria-label="Email"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg></span><span class="social__name">Email</span></a>
+<a class="social__link" data-social="gmail" href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@robertomorales.dev" target="_blank" rel="noopener noreferrer" title="Gmail" aria-label="Gmail"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 18h-2V9.2L12 13 6 9.2V18H4V6h1.6L12 10.5 18.4 6H20v12Z"/></svg></span><span class="social__name">Gmail</span></a>
+<a class="social__link" data-social="outlook" href="https://outlook.live.com/mail/0/deeplink/compose?to=hello@robertomorales.dev" target="_blank" rel="noopener noreferrer" title="Outlook" aria-label="Outlook"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2 5.5 11 2v20L2 18.5v-13Zm11 .7 9-2.2v15.5l-9-2.2V6.2ZM13.8 12c0 1.7 1.1 2.7 2.7 2.7s2.7-1 2.7-2.7-1.1-2.7-2.7-2.7-2.7 1-2.7 2.7Z"/></svg></span><span class="social__name">Outlook</span></a>
+<a class="social__link" data-social="github" href="https://github.com/RbrtMrlsIII" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><span class="social__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.7.7 1.1 1.6 1.1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></span><span class="social__name">GitHub</span></a>
+</div>
+<div class="hero__meta"><div><strong>PH</strong><span data-i18n="location">Philippines</span></div><div><strong>∞</strong><span data-i18n="mode">Always experimenting</span></div><div><strong>AI</strong><span>Human + machine craft</span></div></div>
+</div>
+<div class="hero__visual reveal reveal--late" data-tilt>
+<div class="halo"></div>
+<div class="hero-card glass-panel">
+<div class="hero-card__chrome"><span>LIVE PORTRAIT</span><span class="chrome-live"><span class="status-dot"></span> ONLINE</span></div>
+<div class="portrait-wrap"><div class="portrait-glow"></div><img src="assets/IMG_20250712_095315.jpg" alt="Portrait of Roberto Cabalse Morales III"/></div>
+<div class="hero-card__footer"><div><small>IDENTITY</small><strong>ROBERTO M.</strong></div><div class="meter"><span></span></div><div><small>ORIGIN</small><strong>PH</strong></div></div>
+</div></div>
+</section>
+<section class="section" id="about"><div class="section__heading reveal"><div class="section__label"><span class="section-index">01</span><span class="section-kicker">ABOUT ME</span></div><h2>Design the feeling, then engineer the surface.</h2></div></section>
+<section class="section" id="services"><div class="section__heading reveal"><div class="section__label"><span class="section-index">02</span><span class="section-kicker">SERVICES</span></div><h2>What I can help with.</h2></div></section>
+<section class="section" id="projects"><div class="section__heading reveal"><div class="section__label"><span class="section-index">03</span><span class="section-kicker">PROJECTS</span></div><h2>Selected work & experiments.</h2></div></section>
+<section class="section" id="education"><div class="section__heading reveal"><div class="section__label"><span class="section-index">04</span><span class="section-kicker">EDUCATION</span></div><h2>Learning path.</h2></div></section>
+<section class="section contact-section" id="contact"><div class="contact-panel glass-panel reveal"><h2>Let's build the next screen.</h2><a class="button button--primary button--large" href="mailto:hello@robertomorales.dev">hello@robertomorales.dev ↗</a></div></section>
+<section class="section" id="credits"><div class="credits-panel glass-panel reveal"><p>Background video by Mixkit (non-commercial, attributed). Design & code by Roberto Cabalse Morales III.</p></div></section>
+</main>
+<footer class="footer"><span>© 2026 Roberto Cabalse Morales III</span><span>BUILT FOR THE WEB · WITH CURIOSITY</span></footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
