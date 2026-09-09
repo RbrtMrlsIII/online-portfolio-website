@@ -2,7 +2,9 @@
 
 ## Product direction
 
-Build a cinematic online portfolio for Roberto Cabalse Morales III using a live-video-ready scene, glass-skeuomorphic UI, responsive viewport strategy, DOM/WebGL separation, progressive WebGL enhancement, animated translation, tactile depth interactions, and strong performance/accessibility constraints.
+Build a cinematic online portfolio for Roberto Cabalse Morales III using a live-video-ready scene, **Glassmorphism UI**, responsive viewport strategy, DOM/WebGL separation, progressive WebGL enhancement, animated translation, tactile depth interactions, and strong performance/accessibility constraints.
+
+Current color roots are temporary defaults and can still change.
 
 ## Delivery law
 
@@ -19,7 +21,7 @@ Gate: validation PASS + endorsement APPROVED.
 
 ## Phase 02 — Art Direction & Design System
 
-Turn the numeric roots into the canonical Roberto visual system **and establish the reusable structural component foundation**.
+Turn the (temporary) numeric roots into a clean **Glassmorphism** visual system **and establish the reusable structural component foundation**.
 
 ### Structural goals (must be done in this phase)
 
@@ -27,7 +29,7 @@ Create clean, reusable structural patterns before heavy visual polish:
 
 - Button system (primary, ghost, large, icon)
 - Section pattern (consistent heading + content structure)
-- Card / Panel system (glass variants: soft, strong, elevated)
+- Card / Panel system (glass variants)
 - Navigation items
 - Chips / floating labels / badges
 - Basic form controls (for future use)
@@ -35,18 +37,19 @@ Create clean, reusable structural patterns before heavy visual polish:
 
 ### Visual goals
 
-- Glass material variants with ember lighting
+- Pure Glassmorphism material (translucent surfaces, blur, soft borders, depth)
+- Flexible color system (current roots are defaults only)
 - Typography hierarchy
 - Hover / press / focus-visible / active states for all interactive elements
 - Morph / depth transitions using existing motion tokens
-- Mobile adaptations of the component system (composition changes, not just scaling)
+- Mobile adaptations of the component system
 
 ### Output
 
 - Reusable structural + visual primitives
 - Updated `index.html` that uses the new component classes consistently
 - Coherent art-directed static experience across desktop and mobile
-- Everything remains token-driven (no random hardcoded values)
+- Token system remains flexible (nothing locked yet)
 
 Gate: validation PASS + endorsement APPROVED.
 
@@ -54,9 +57,13 @@ Gate: validation PASS + endorsement APPROVED.
 
 Implement the scene pipeline for a live video background with fallback behavior, masking/shading, video performance controls, and clear separation from DOM UI.
 
-Output: production-ready scene layer with local video-ready hooks and resilient fallback.
+**Current video asset:**
+`assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4`
 
-**Note:** A Mixkit coral reef video (`assets/mixkit-beautiful-coral-reef-with-exotic-reef-fish-44868-hd-ready.mp4`) has been uploaded and is available for evaluation during this phase.
+- Accepted for non-commercial use
+- Credit will be given to Mixkit
+
+Output: production-ready scene layer with local video-ready hooks and resilient fallback.
 
 ## Phase 04 — Motion & Transition System
 
